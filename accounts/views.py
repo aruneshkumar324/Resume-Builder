@@ -11,7 +11,7 @@ def user_login(request):
 
         if user is not None:
             login(request, user)
-            return redirect('test_page')
+            return redirect('dashboard')
         else:
             return render(request, 'accounts/login.html', {"message": "Username not exists"})
 
@@ -44,17 +44,12 @@ def register(request):
 
                     user.save()
 
-                    # return render(request, 'accounts/test.html', {"message": "welcome"})
-                    return redirect('test_page')
+                    return redirect('dashboard')
 
         else:
             return render(request, 'accounts/register.html', {"message": "Password not match with confirm password"})
     else:
         return render(request, 'accounts/register.html')
-
-
-def test_page(request):
-    return render(request, 'accounts/test.html')
 
 
 def log_out(request):
