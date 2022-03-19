@@ -40,11 +40,21 @@
                 <div class="card-body">
 
                   <div class="pt-4 pb-2">
+                    {% if message %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <i class="bi bi-exclamation-octagon me-1"></i>
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endif %}
+
                     <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
                     <p class="text-center small">Enter your username & password to login</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" novalidate>
+                  <form action="{% url 'home' %}" method="POST" class="row g-3 needs-validation" novalidate>
+
+                    {% csrf_token %}
 
                     <div class="col-12">
                       <div class="input-group has-validation">

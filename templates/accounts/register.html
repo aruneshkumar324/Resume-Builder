@@ -38,14 +38,31 @@
                 <div class="card-body">
 
                   <div class="pt-4 pb-2">
+
+                    {% if message %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <i class="bi bi-exclamation-octagon me-1"></i>
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endif %}
+
                     <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
                     <p class="text-center small">Enter your personal details to create account</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" novalidate>
+                  <form action="{% url 'register' %}" method="POST" class="row g-3 needs-validation" novalidate>
+
+                      {% csrf_token %}
+                      
                     <div class="col-12">
-                      <input type="text" name="name" class="form-control"  placeholder='Your Name' required>
-                      <div class="invalid-feedback">Please, enter your name!</div>
+                      <input type="text" name="first_name" class="form-control"  placeholder='First Name' required>
+                      <div class="invalid-feedback">Please, enter your first name!</div>
+                    </div>
+
+                    <div class="col-12">
+                      <input type="text" name="last_name" class="form-control"  placeholder='Last Name' required>
+                      <div class="invalid-feedback">Please, enter your last name!</div>
                     </div>
 
                     <div class="col-12">
