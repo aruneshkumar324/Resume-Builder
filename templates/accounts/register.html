@@ -12,10 +12,22 @@
       <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
         <div class="container">
           <div class="row justify-content-center">
+
+            <div class="col-lg-6 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+              <h1 style="color:#0d6efd;font-weight:900;font-size:5rem;">Mudra</h1>
+
+              <p style="font-size:18px;color:#303030;line-height:1.7;">You can create your own full profile and share with HR directly, without any cost. Now you can create your online
+                  profile and share your profile link with anyone to help who are you. And also you can share with your HR as a resume.
+              </p>
+
+            </div>
+
+
             <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
               <div class="d-flex justify-content-center py-4">
-                <a href="index.html" class="logo d-flex align-items-center w-auto">
+                <a href="{% url 'home' %}" class="logo d-flex align-items-center w-auto">
                   <img src="{% static 'assets/img/logo.png' %}" alt="">
                   <span class="d-none d-lg-block">Mudra</span>
                 </a>
@@ -63,7 +75,7 @@
                       <button class="btn btn-primary w-100" type="submit">Create Account</button>
                     </div>
                     <div class="col-12">
-                      <p class="small mb-0">Already have an account? <a href="{% url 'login' %}">Log in</a></p>
+                      <p class="small mb-0">Already have an account? <a href="{% url 'home' %}">Log in</a></p>
                     </div>
                   </form>
 
