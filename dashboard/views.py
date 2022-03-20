@@ -65,3 +65,15 @@ def new_password(request):
             return render(request, 'dashboard/account_settings.html', {"message": "Password not match with confirm password"})
     else:
         return render(request, 'dashboard/account_settings.html')
+    
+
+# BUILD RESUME
+@login_required(login_url='home')
+def build_resume(request):
+    return render(request, 'dashboard/build_resume.html')
+
+
+# NEED HELP
+@login_required(login_url='home')
+def need_help(request):
+    return render(request, 'dashboard/need_help.html')
