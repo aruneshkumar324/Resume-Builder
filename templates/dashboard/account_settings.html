@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include 'includes/header.html' %}
+{% include 'includes/sidebar.html' %}
+
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Account Settings</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+          <li class="breadcrumb-item active">Account Settings</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-8">
+
+            <div class="card">
+                <div class="card-body">
+                <h5 class="card-title">Update Your Profile Details</h5>
+
+                    <!-- Floating Labels Form -->
+                    <form class="row g-3">
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingEmail" placeholder="Your ID" value="{{ user.id }}" disabled>
+                                <label for="floatingEmail">Your ID</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingPassword" placeholder="Username" value="{{ user.username }}" disabled>
+                                <label for="floatingPassword">Username</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="floatingName" placeholder="Email" value="{{ user.email }}" disabled>
+                                <label for="floatingName">Your Email</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="floatingName" placeholder="Phone" required>
+                                <label for="floatingName">Phone</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingName" placeholder="Country" required>
+                                <label for="floatingName">Country</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingName" placeholder="State" required>
+                                <label for="floatingName">State</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingName" placeholder="City" required>
+                                <label for="floatingName">City</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingName" placeholder="Mother Tongue ( Language )" required>
+                                <label for="floatingName">Mother Tongue ( Language )</label>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingName" placeholder="Facebook Account Link">
+                                <label for="floatingName">Facebook Account Link ( Not Required )</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingName" placeholder="Twitter Account Link">
+                                <label for="floatingName">Twitter Account Link ( Not Required )</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingName" placeholder="Linkedin Account Link">
+                                <label for="floatingName">Linkedin Account Link ( Not Required )</label>
+                            </div>
+                        </div>
+                        
+
+                        {% comment %} GENDER {% endcomment %}
+                        <fieldset class="row mb-3 pt-4">
+                            <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+                            <div class="col-sm-10">
+                                    <input class="form-check-input" type="radio" name="gender" id="gridRadios1" value="male" checked>
+                                    <label class="form-check-label" for="gridRadios1">Male</label>
+                                    <input class="form-check-input" type="radio" name="gender" id="gridRadios2" value="female">
+                                    <label class="form-check-label" for="gridRadios2">Female</label>
+                                    <input class="form-check-input" type="radio" name="gender" id="gridRadios3" value="other">
+                                    <label class="form-check-label" for="gridRadios3">Other</label>
+                            </div>
+                        </fieldset>
+                        
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                        
+                    </form><!-- End floating Labels Form -->
+
+                </div>
+            </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+
+{% endblock %}

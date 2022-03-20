@@ -47,7 +47,13 @@
       </li><!-- End Profile Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-blank.html">
+        <a 
+        {% if 'account_settings' in request.path %}
+            class="nav-link"
+        {% else %}
+            class="nav-link collapsed"
+        {% endif %}
+        href="{% url 'account_settings' %}">
           <i class="ri-user-settings-line"></i>
           <span>Account Settings</span>
         </a>

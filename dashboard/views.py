@@ -12,3 +12,9 @@ def dashboard(request):
 @login_required(login_url='home')
 def profile(request):
     return render(request, 'dashboard/profile.html')
+
+
+# ACCOUNT SETTINGS
+@login_required(login_url='home')
+def account_settings(request):
+    return render(request, 'dashboard/account_settings.html')

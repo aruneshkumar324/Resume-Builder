@@ -6,6 +6,13 @@
 {% block content %}
 
 
+{% if user.is_authenticated %}
+
+BUG
+
+{% else %}
+
+
  <main>
     <div class="container">
 
@@ -107,6 +114,8 @@
 
     </div>
   </main><!-- End #main -->
+
+{% endif %}
 
 
 {% endblock %}
