@@ -15,7 +15,7 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
           <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
-          <li class="breadcrumb-item active">Account Settings</li>
+          <li class="breadcrumb-item active">Build Resume</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -25,84 +25,256 @@
       <div class="row">
         <div class="col-lg-8">
 
+            <div class="card">
+                <div class="card-body">
+                <h5 class="card-title" style="font-size:2rem;">Create Your Amazing Resume.</h5>
+                <p class="card-text">Before building your resume we need basic information about you, so we can easily create your resume.</p>
+                </div>
+            </div>
+
 
             <div class="card">
                 <div class="card-body">
-                <h5 class="card-title">Update Your Profile Details</h5>
+                    <h5 class="card-title" style="text-decoration:underline;">HEADING</h5>
 
                     <!-- Floating Labels Form -->
                     <form action="{% url 'account_settings' %}" method="POST" class="row g-3" enctype='multipart/form-data'>
 
                         {% csrf_token %}
 
+                        <!-- USER ID -->
                         <input type="hidden" name="user_id" class="form-control" value="{{ user.id }}">
+                        <!-- EMAIL -->
+                        <input type="hidden" class="form-control" name="email" value="{{ user.email }}">
+
+
+                        {% comment %} <hr style="height:4px;border-width:0;color:gray;background-color:#545454;border-radius:5px;"> {% endcomment %}
+
+                        <!-- PHOTO UPLOAD -->
+                        <div class="col-md-6">
+                            <label for="formFile">Profile Photo</label>
+                            <input class="form-control" type="file" id="formFile" name="profile_img">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="formFile">Cover Photo</label>
+                            <input class="form-control" type="file" id="formFile" name="cover_img">
+                        </div>
+
+                        <!-- Profession -->
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="number" class="form-control" id="floatingName" placeholder="Phone" required>
+                                <input type="number" class="form-control" id="floatingName" name="profession" placeholder="Profession" required>
+                                <label for="floatingName">Profession</label>
+                            </div>
+                        </div>
+
+                         <!-- COUNTRY -->
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" name="country" id="floatingName" placeholder="Country" required>
+                                <label for="floatingName">Country</label>
+                            </div>
+                        </div>
+
+                        <!-- CITY -->
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingName" name="city" placeholder="City" required>
+                                <label for="floatingName">City</label>
+                            </div>
+                        </div>
+
+                        <!-- PHONE  -->
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="floatingName" name="phone" placeholder="Phone" required>
                                 <label for="floatingName">Phone</label>
                             </div>
                         </div>
 
+
+                        <!-- JOB -->
+                        <hr style="height:4px;border-width:0;color:gray;background-color:#545454;border-radius:5px;padding:0; margin-top:50px;">
+                        <h5 class="card-title" style="text-decoration:underline;margin:0;padding:0">WORK HISTORY</h5>
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingName" placeholder="Country" required>
-                                <label for="floatingName">Country</label>
+                                <input type="text" class="form-control" id="floatingName" name="job_title" placeholder="Job Title">
+                                <label for="floatingName">Job Title</label>
                             </div>
                         </div>
+
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingName" placeholder="State" required>
-                                <label for="floatingName">State</label>
+                                <input type="text" class="form-control" id="floatingName" name="employer" placeholder="Employer">
+                                <label for="floatingName">Employer</label>
                             </div>
                         </div>
+
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingName" placeholder="City" required>
-                                <label for="floatingName">City</label>
+                                <input type="text" class="form-control" id="floatingName" name="job_city" placeholder="Job City">
+                                <label for="floatingName">Job City</label>
                             </div>
                         </div>
+
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingName" placeholder="Mother Tongue ( Language )" required>
-                                <label for="floatingName">Mother Tongue ( Language )</label>
+                                <input type="text" class="form-control" id="floatingName" name="job_country" placeholder="Job Country">
+                                <label for="floatingName">Job Country</label>
                             </div>
                         </div>
+
+                        <div class="col mb-6">
+                            <label for="inputDate" class="col-sm-5 col-form-label">Start Date</label>
+                            <div class="col-sm-10">
+                                <input type="date" class="form-control" name="start_date_job" min="1980-01-01" max="2022-12-31">
+                            </div>
+                        </div>
+
+                        <div class="col mb-6">
+                            <label for="inputDate" class="col-sm-5 col-form-label">End Date</label>
+                            <div class="col-sm-10">
+                                <input type="date" class="form-control" name="start_date_job" min="1980-01-01" max="2022-12-31">
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-sm-12">
+                                <textarea class="form-control" style="height: 100px; width:100%;" placeholder="Add The Job Description"></textarea>
+                            </div>
+                        </div>
+
+
+                        <!-- EDUCATION -->
+                        <hr style="height:4px;border-width:0;color:gray;background-color:#545454;border-radius:5px;padding:0;margin-top:50px;">
+                        <h5 class="card-title" style="text-decoration:underline;margin:0;padding:0">EDUCATION</h5>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingName" name="school_name" placeholder="School Name">
+                                <label for="floatingName">School Name</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingName" name="school_location" placeholder="School Location">
+                                <label for="floatingName">School Location</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <div class="col-sm-12">
+                                    <select class="form-select" id="floatingName" name="degree" aria-label="Default select example">
+                                        <option selected>Select Degree</option>
+                                        <option value="Hight School Diploma">Hight School Diploma</option>
+                                        <option value="Bachelor Arts">Bachelor Arts</option>
+                                        <option value="Master Science">Master Science</option>
+                                        <option value="Bachelor Science">Bachelor Science</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingName" name="field_of_study" placeholder="Field of Study">
+                                <label for="floatingName">Field of Study</label>
+                            </div>
+                        </div>
+
+                        <div class="col mb-6">
+                            <label for="inputDate" class="col-sm-5 col-form-label">Start Date Stduy</label>
+                            <div class="col-sm-10">
+                                <input type="date" class="form-control" name="start_date_study" min="1980-01-01" max="2022-12-31">
+                            </div>
+                        </div>
+
+                        <div class="col mb-6">
+                            <label for="inputDate" class="col-sm-5 col-form-label">End Date Study</label>
+                            <div class="col-sm-10">
+                                <input type="date" class="form-control" name="end_date_study" min="1980-01-01" max="2022-12-31">
+                            </div>
+                        </div>
+
+
+                        <!-- SKILLS -->
+                        <hr style="height:4px;border-width:0;color:gray;background-color:#545454;border-radius:5px;padding:0;margin-top:50px;">
+                        <h5 class="card-title" style="text-decoration:underline;margin:0;padding:0">SKILLS</h5>
+
+                        <div class="row mt-3">
+                            <div class="col-sm-12">
+                                <textarea class="form-control" style="height: 100px; width:100%;" placeholder="HTML, CSS, JavaScript, Node.js, React.js and more"></textarea>
+                            </div>
+                        </div>
+
+
+                        <!-- Briefly Tell Us About Your Background -->
+                        <hr style="height:4px;border-width:0;color:gray;background-color:#545454;border-radius:5px;padding:0;margin-top:50px;">
+                        <h5 class="card-title" style="text-decoration:underline;margin:0;padding:0">Briefly Tell Us About Your Background</h5>
+
+                        <div class="row mt-3">
+                            <div class="col-sm-12">
+                                <textarea class="form-control" style="height: 120px; width:100%;" placeholder="Briefly Tell Us About Your Background"></textarea>
+                            </div>
+                        </div>
+
+
+
+                        <!-- PROJECT -->
+                        <hr style="height:4px;border-width:0;color:gray;background-color:#545454;border-radius:5px;padding:0;margin-top:50px;">
+                        <h5 class="card-title" style="text-decoration:underline;margin:0;padding:0">PROJECT</h5>
                         
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingName" name="project" placeholder="Project Title">
+                                <label for="floatingName">Project Title</label>
+                            </div>
+                        </div>
+
+                        <div class="col mb-6">
+                            <label for="inputDate" class="col-sm-10 col-form-label">Project Created Date</label>
+                            <div class="col-sm-10">
+                                <input type="date" class="form-control" name="project_created_date" min="1980-01-01" max="2022-12-31">
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-sm-12">
+                                <textarea class="form-control" style="height: 120px; width:100%;" placeholder="Briefly Explain About Your Project"></textarea>
+                            </div>
+                        </div>
+
+                        
+                        <!-- Social Account -->
+                        <hr style="height:4px;border-width:0;color:gray;background-color:#545454;border-radius:5px;padding:0;margin-top:50px;">
+                        <h5 class="card-title" style="text-decoration:underline;margin:0;padding:0">Social Account</h5>
+
                         <div class="col-md-12">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingName" placeholder="Facebook Account Link">
-                                <label for="floatingName">Facebook Account Link ( Not Required )</label>
+                                <input type="text" class="form-control" id="floatingName" placeholder="Website">
+                                <label for="floatingName">Website ( Optional )</label>
                             </div>
                         </div>
+
                         <div class="col-md-12">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="floatingName" placeholder="Twitter Account Link">
-                                <label for="floatingName">Twitter Account Link ( Not Required )</label>
+                                <label for="floatingName">Twitter Account Link ( Optional )</label>
                             </div>
                         </div>
+
                         <div class="col-md-12">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="floatingName" placeholder="Linkedin Account Link">
-                                <label for="floatingName">Linkedin Account Link ( Not Required )</label>
+                                <label for="floatingName">Linkedin Account Link ( Optional )</label>
                             </div>
                         </div>
                         
-
-                        {% comment %} GENDER {% endcomment %}
-                        <fieldset class="row mb-3 pt-4">
-                            <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
-                                <div class="col-sm-10">
-                                    <input class="form-check-input" type="radio" name="gender" id="gridRadios1" value="male" checked>
-                                    <label class="form-check-label" for="gridRadios1">Male</label>
-                                    <input class="form-check-input" type="radio" name="gender" id="gridRadios2" value="female">
-                                    <label class="form-check-label" for="gridRadios2">Female</label>
-                                    <input class="form-check-input" type="radio" name="gender" id="gridRadios3" value="other">
-                                    <label class="form-check-label" for="gridRadios3">Other</label>
-                                </div>
-                        </fieldset>
                         
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-primary">Create Resume</button>
                         </div>
 
                     </form><!-- End floating Labels Form -->
