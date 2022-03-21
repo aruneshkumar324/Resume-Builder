@@ -1,44 +1,52 @@
 from django.db import models
+from datetime import datetime
 
 
-class Profile(models.Model):
+# BUILD RESUME MODEL
+class BuildResume(models.Model):
+    #   POPULATE DATA
+    user_id = models.IntegerField()
+    email = models.CharField(max_length=300)
 
-    select_gender = [
-        ('Male', 'Male'),
-        ('Female', 'Female'),
-        ('Other', 'Other'),
-    ]
-
-    select_language = [
-        ('English', 'English'),
-        ('Chinese', 'Chinese'),
-        ('Spanish', 'Spanish'),
-        ('Arabic', 'Arabic'),
-        ('Portuguese', 'Portuguese'),
-        ('Bengali', 'Bengali'),
-        ('Russian', 'Russian'),
-        ('Japanese', 'Japanese'),
-        ('Lahnda', 'Lahnda'),
-    ]
-
-    user_id = models.IntegerField(blank=True)
-    username = models.CharField(max_length=250, blank=True)
-    email = models.CharField(max_length=250, blank=True)
-    phone = models.CharField(max_length=250)
-    whatsapp_number = models.CharField(max_length=250, blank=True)
+    #   HEADING DATA
+    profile_photo = models.ImageField(upload_to='profile_photo/%Y/%m/%d/')
+    cover_photo = models.ImageField(upload_to='cover_photo/%Y/%m/%d/')
+    profession = models.CharField(max_length=300)
     country = models.CharField(max_length=300)
-    state = models.CharField(max_length=300)
     city = models.CharField(max_length=300)
-    date_of_birth = models.CharField(max_length=100)
-    gender = models.CharField(choices=select_gender, max_length=100)
-    speaking_language = models.CharField(choices=select_language, max_length=100)
-    created_date = models.DateTimeField(auto_now_add=True)
-    updated_date = models.DateTimeField(auto_now=True)
+    phone = models.CharField(max_length=300)
 
-    facebook_link = models.CharField(max_length=500, blank=True)
-    twitter_link = models.CharField(max_length=500, blank=True)
-    linkedin_link = models.CharField(max_length=500, blank=True)
-    github_link = models.CharField(max_length=500, blank=True)
-    instagram_link = models.CharField(max_length=500)
-    stackoverflow_link = models.CharField(max_length=500, blank=True)
-    reddit_link = models.CharField(max_length=500, blank=True)
+    #   WORK HISTORY or INTERNSHIP
+    job_title = models.CharField(max_length=300)
+    employer = models.CharField(max_length=300)
+    job_city = models.CharField(max_length=300)
+    job_country = models.CharField(max_length=300)
+    job_start_date = models.CharField(max_length=300)
+    job_end_date = models.CharField(max_length=300)
+    job_description = models.TextField()
+
+    #   EDUCATION
+    school_name = models.CharField(max_length=300)
+    school_location = models.CharField(max_length=300)
+    degree = models.CharField(max_length=300)
+    field_of_study = models.CharField(max_length=300)
+    school_start_date = models.CharField(max_length=300)
+    school_end_date = models.CharField(max_length=300)
+
+    # SKILLS
+    skills = models.TextField()
+
+    #   ABOUT YOU
+    about_you = models.TextField()
+
+    # PROJECT
+    project_title = models.CharField(max_length=300)
+    project_date = models.CharField(max_length=300)
+    project_description = models.TextField()
+
+    # SOCIAL ACCOUNT
+    website = models.CharField(max_length=300, blank=True)
+    twitter = models.CharField(max_length=300, blank=True)
+    linkedin = models.CharField(max_length=300, blank=True)
+
+    created_date = models.DateTimeField(blank=True, default=datetime.now)
