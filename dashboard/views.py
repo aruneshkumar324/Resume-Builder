@@ -76,6 +76,8 @@ def build_resume(request):
         profile_img = request.FILES["profile_img"]
         cover_img = request.FILES["cover_img"]
 
+        resume_title = request.POST['resume_title']
+
         #   POPULATE DATA
         user_id = request.POST['user_id']
         email = request.POST['email']
@@ -119,20 +121,26 @@ def build_resume(request):
         twitter = request.POST['twitter']
         linkedin = request.POST['linkedin']
         
+        user = User.objects.get(pk=user_id)
 
-        resume = BuildResume(user_id=user_id, email=email, profile_photo=profile_img, cover_photo=cover_img, profession=profession, country=country, city=city,
-                            phone=phone, job_title=job_title, employer=employer, job_city=job_city, job_country=job_country, job_start_date=start_date_job,
-                            job_end_date=end_date_job, job_description=job_description, school_name=school_name, school_location=school_location,
-                            degree=degree, field_of_study=field_of_study, school_start_date=start_date_study, school_end_date=end_date_study,
-                            skills=skills, about_you=about_you, project_title=project_title, project_date=project_created_date, project_description=about_project,
-                            website=website, twitter=twitter, linkedin=linkedin)
+        if BuildResume.objects.filter(resume_title=resume_title, user_id=user.id).exists():
+            return render(request, 'dashboard/build_resume.html', {"message": "Resume Title Not Available."})
+        else:
+            resume = BuildResume(user_id=user_id, email=email, resume_title=resume_title, profile_photo=profile_img, cover_photo=cover_img, profession=profession, country=country, city=city,phone=phone, job_title=job_title, employer=employer, job_city=job_city, job_country=job_country, job_start_date=start_date_job,job_end_date=end_date_job, job_description=job_description, school_name=school_name, school_location=school_location,
+            degree=degree, field_of_study=field_of_study, school_start_date=start_date_study, school_end_date=end_date_study,skills=skills, about_you=about_you, project_title=project_title, project_date=project_created_date, project_description=about_project,
+            website=website, twitter=twitter, linkedin=linkedin)
 
-        resume.save()
+            resume.save()
 
-        return redirect('profile')
+            return redirect('profile')
 
     else:
         return render(request, 'dashboard/build_resume.html')
+
+
+#   ALL RESUMES
+def all_resume(request):
+    return render(request, 'dashboard/all_resumes.html')
 
 
 # NEED HELP

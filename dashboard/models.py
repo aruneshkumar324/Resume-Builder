@@ -8,6 +8,8 @@ class BuildResume(models.Model):
     user_id = models.IntegerField()
     email = models.CharField(max_length=300)
 
+    resume_title = models.CharField(max_length=300)
+
     #   HEADING DATA
     profile_photo = models.ImageField(upload_to='profile_photo/%Y/%m/%d/')
     cover_photo = models.ImageField(upload_to='cover_photo/%Y/%m/%d/')
@@ -49,4 +51,6 @@ class BuildResume(models.Model):
     twitter = models.CharField(max_length=300, blank=True)
     linkedin = models.CharField(max_length=300, blank=True)
 
-    created_date = models.DateTimeField(blank=True, default=datetime.now)
+    # created_date = models.DateTimeField(blank=True, default=datetime.now)
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)

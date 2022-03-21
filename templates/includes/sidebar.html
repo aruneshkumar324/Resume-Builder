@@ -57,11 +57,24 @@
           <span>Build Resume</span>
         </a>
       </li><!-- End Blank Page Nav -->
+
+      <li class="nav-item">
+        <a 
+        {% if 'all_resume' in request.path %}
+            class="nav-link"
+        {% else %}
+            class="nav-link collapsed"
+        {% endif %}
+        href="{% url 'all_resume' %}">
+          <i class="ri-table-fill"></i>
+          <span>All Resume</span>
+        </a>
+      </li><!-- End Blank Page Nav -->
      
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="pages-contact.html">
-          <i class=""></i>
+          <i class="ri-pages-line"></i>
           <span>Resume Templates</span>
         </a>
       </li><!-- End Contact Page Nav -->
