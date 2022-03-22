@@ -10,4 +10,7 @@ urlpatterns = [
     path('need_help/', views.need_help, name='need_help'),
     path('build_resume/', views.build_resume, name='build_resume'),
     path('all_resume/', views.all_resume, name='all_resume'),
+    path('read_resume/<int:id>/', views.read_resume, name='read_resume'),
+    path('delete_resume/<int:id>/', views.delete_resume, name="delete_resume"),
+    path('update_resume/<int:id>/', views.update_resume, name="update_resume"),
 ]

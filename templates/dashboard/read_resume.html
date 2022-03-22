@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% include 'includes/header.html' %}
+{% include 'includes/sidebar.html' %}
+
+ <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Blank Page</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+          <li class="breadcrumb-item active">All Resume</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+
+      
+            <div class="card">
+                <div class="card-body">
+                <h5 class="card-title">All Resume</h5>
+                <p>List of all resumes you have created. You can read, update and delete your resumes.</p>
+                </div>
+            </div>
+
+        
+        <div class="card">
+            <div class="card-body">
+                
+                <h1>Display Resume data in resume template format</h1>
+
+            </div>
+          </div>
+
+
+
+
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+
+
+
+{% endblock %}

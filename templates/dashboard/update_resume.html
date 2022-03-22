@@ -1,0 +1,281 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% include 'includes/header.html' %}
+{% include 'includes/sidebar.html' %}
+
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Update Your Resume</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+          <li class="breadcrumb-item active">Update Your Resume</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-8">
+
+            <div class="card">
+                <div class="card-body">
+                <h5 class="card-title" style="font-size:2rem;">Update Your Resume</h5>
+                <p class="card-text">If you want update your resume you can do. ( But if you want update your name, username, email or password then <a href="{% url 'account_settings' %}">click Me<a> )</p>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <div class="card-body">
+                    
+                    <!-- Floating Labels Form -->
+                    <form action="{% url 'update_resume' resume.id %}" method="POST" class="row g-3" enctype='multipart/form-data'>
+
+                        {% csrf_token %}
+
+                        <h5 class="card-title" style="text-decoration:underline;">YOUR BASIC DETAILS</h5>
+
+                        <!-- PHOTO UPLOAD -->
+                        <div class="col-md-6">
+                            <label for="formFile">Profile Photo</label>
+                            <input class="form-control" type="file" id="formFile" name="profile_img">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="formFile">Cover Photo</label>
+                            <input class="form-control" type="file" id="formFile" name="cover_img">
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingName" name="profession" placeholder="Profession" value="{{ resume.profession }}">
+                                <label for="floatingName">Profession</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" name="country" id="floatingName" placeholder="Country" value="{{ resume.country }}">
+                                <label for="floatingName">Country</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingName" name="city" placeholder="City" value="{{ resume.city }}">
+                                <label for="floatingName">City</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="floatingName" name="phone" placeholder="Phone" value="{{ resume.phone }}">
+                                <label for="floatingName">Phone</label>
+                            </div>
+                        </div>
+
+
+                        <!-- JOB -->
+                        <hr style="height:4px;border-width:0;color:gray;background-color:#545454;border-radius:5px;padding:0; margin-top:50px;">
+                        <h5 class="card-title" style="text-decoration:underline;margin:0;padding:0">WORK HISTORY</h5>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingName" name="job_title" placeholder="Job Title" value="{{ resume.job_title }}">
+                                <label for="floatingName">Job Title</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingName" name="employer" placeholder="Employer" value="{{ resume.employer }}">
+                                <label for="floatingName">Employer</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingName" name="job_city" placeholder="Job City" value="{{ resume.job_city }}">
+                                <label for="floatingName">Job City</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingName" name="job_country" placeholder="Job Country" value="{{ resume.job_country }}">
+                                <label for="floatingName">Job Country</label>
+                            </div>
+                        </div>
+
+                        <div class="col mb-6">
+                            <label for="inputDate" class="col-sm-5 col-form-label">Start Date</label>
+                            <div class="col-sm-10">
+                                <input type="date" class="form-control" name="start_date_job" min="1980-01-01" max="2022-12-31" value="{{ resume.job_start_date }}">
+                            </div>
+                        </div>
+
+                        <div class="col mb-6">
+                            <label for="inputDate" class="col-sm-5 col-form-label">End Date</label>
+                            <div class="col-sm-10">
+                                <input type="date" class="form-control" name="end_date_job" min="1980-01-01" max="2022-12-31" value="{{ resume.job_end_date }}">
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-sm-12">
+                                <textarea class="form-control" style="height: 100px; width:100%;" placeholder="Add The Job Description" name="job_description">{{ resume.job_description }}</textarea>
+                            </div>
+                        </div>
+
+
+                        <!-- EDUCATION -->
+                        <hr style="height:4px;border-width:0;color:gray;background-color:#545454;border-radius:5px;padding:0;margin-top:50px;">
+                        <h5 class="card-title" style="text-decoration:underline;margin:0;padding:0">EDUCATION</h5>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingName" name="school_name" placeholder="School Name" value="{{ resume.school_name }}">
+                                <label for="floatingName">School Name</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingName" name="school_location" placeholder="School Location" value="{{ resume.school_location }}">
+                                <label for="floatingName">School Location</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <div class="col-sm-12">
+                                    <select class="form-select" id="floatingName" name="degree" aria-label="Default select example" >
+                                        <option selected>{{ resume.degree }}</option>
+                                        <option value="Hight School Diploma">Hight School Diploma</option>
+                                        <option value="Bachelor Arts">Bachelor Arts</option>
+                                        <option value="Master Science">Master Science</option>
+                                        <option value="Bachelor Science">Bachelor Science</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingName" name="field_of_study" placeholder="Field of Study" value="{{ resume.field_of_study }}">
+                                <label for="floatingName">Field of Study</label>
+                            </div>
+                        </div>
+
+                        <div class="col mb-6">
+                            <label for="inputDate" class="col-sm-5 col-form-label">Start Date Stduy</label>
+                            <div class="col-sm-10">
+                                <input type="date" class="form-control" name="start_date_study" min="1980-01-01" max="2022-12-31" value="{{ resume.school_start_date }}">
+                            </div>
+                        </div>
+
+                        <div class="col mb-6">
+                            <label for="inputDate" class="col-sm-5 col-form-label">End Date Study</label>
+                            <div class="col-sm-10">
+                                <input type="date" class="form-control" name="end_date_study" min="1980-01-01" max="2022-12-31" value="{{ resume.school_end_date }}">
+                            </div>
+                        </div>
+
+
+                        <!-- SKILLS -->
+                        <hr style="height:4px;border-width:0;color:gray;background-color:#545454;border-radius:5px;padding:0;margin-top:50px;">
+                        <h5 class="card-title" style="text-decoration:underline;margin:0;padding:0">SKILLS</h5>
+
+                        <div class="row mt-3">
+                            <div class="col-sm-12">
+                                <textarea class="form-control" style="height: 100px; width:100%;" placeholder="HTML, CSS, JavaScript, Node.js, React.js and more" name="skills" >{{ resume.skills }}</textarea>
+                            </div>
+                        </div>
+
+
+                        <!-- Briefly Tell Us About Your Background -->
+                        <hr style="height:4px;border-width:0;color:gray;background-color:#545454;border-radius:5px;padding:0;margin-top:50px;">
+                        <h5 class="card-title" style="text-decoration:underline;margin:0;padding:0">Briefly Tell Us About Your Background</h5>
+
+                        <div class="row mt-3">
+                            <div class="col-sm-12">
+                                <textarea class="form-control" style="height: 120px; width:100%;" placeholder="Briefly Tell Us About Your Background" name="about_you">{{ resume.about_you }}</textarea>
+                            </div>
+                        </div>
+
+
+
+                        <!-- PROJECT -->
+                        <hr style="height:4px;border-width:0;color:gray;background-color:#545454;border-radius:5px;padding:0;margin-top:50px;">
+                        <h5 class="card-title" style="text-decoration:underline;margin:0;padding:0">PROJECT</h5>
+                        
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingName" name="project_title" placeholder="Project Title" value="{{ resume.project_title }}">
+                                <label for="floatingName">Project Title</label>
+                            </div>
+                        </div>
+
+                        <div class="col mb-6">
+                            <label for="inputDate" class="col-sm-10 col-form-label">Project Created Date</label>
+                            <div class="col-sm-10">
+                                <input type="date" class="form-control" name="project_created_date" min="1980-01-01" max="2022-12-31" value="{{ resume.project_date }}">
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-sm-12">
+                                <textarea class="form-control" style="height: 120px; width:100%;" placeholder="Briefly Explain About Your Project" name="about_project">{{ resume.project_description }}</textarea>
+                            </div>
+                        </div>
+
+                        
+                        <!-- Social Account -->
+                        <hr style="height:4px;border-width:0;color:gray;background-color:#545454;border-radius:5px;padding:0;margin-top:50px;">
+                        <h5 class="card-title" style="text-decoration:underline;margin:0;padding:0">Social Account</h5>
+
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingName" placeholder="Website" name="website" value="{{ resume.website }}">
+                                <label for="floatingName">Website ( Optional )</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingName" placeholder="Twitter Account Link" name="twitter" value="{{ resume.twitter }}">
+                                <label for="floatingName">Twitter Account Link ( Optional )</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingName" placeholder="Linkedin Account Link" name="linkedin" value="{{ resume.linkedin }}">
+                                <label for="floatingName">Linkedin Account Link ( Optional )</label>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Create Resume</button>
+                        </div>
+
+                    </form><!-- End floating Labels Form -->
+
+                </div>
+            </div>
+
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+
+{% endblock %}

@@ -6,9 +6,78 @@
 {% include 'includes/header.html' %}
 {% include 'includes/sidebar.html' %}
 
-<main>
-<h1 class="pt-5">All Resume</h1>
-</main>
+ <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Blank Page</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+          <li class="breadcrumb-item active">All Resume</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+
+      
+            <div class="card">
+                <div class="card-body">
+                <h5 class="card-title">All Resume</h5>
+                <p>List of all resumes you have created. You can read, update and delete your resumes.</p>
+                </div>
+            </div>
+
+        
+        <div class="card">
+            <div class="card-body">
+                {% if resumes %}
+
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Resume Title</th>
+                        <th scope="col">Created Date</th>
+                        <th scope="col">Last Update Date</th>
+                        <th scope="col">Update</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for resume in resumes %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td><a href="{% url 'read_resume' resume.id %}">{{ resume.resume_title }}</a></td>
+                            <td>{{ resume.created_date }}</td>
+                            <td>{{ resume.updated_date }}</td>
+                            <td><a href="{% url 'update_resume' resume.id %}"><i class="ri-edit-2-fill" style="font-size:1.3rem;"></i></a></td>
+                            <td><a href="{% url 'delete_resume' resume.id %}"><i class="ri-delete-bin-2-line" style="font-size:1.3rem;color:red;"></i></a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+              
+
+                {% else %}
+                    <h2 class="pt-4">You have not created any resume yet. <a href="{% url 'build_resume' %}">Create Resume Now</a></h2>
+                {% endif %}
+
+            </div>
+          </div>
+
+
+
+
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+
 
 
 {% endblock %}

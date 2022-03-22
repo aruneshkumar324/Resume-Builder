@@ -132,15 +132,125 @@ def build_resume(request):
 
             resume.save()
 
-            return redirect('profile')
+            return redirect('all_resume')
 
     else:
         return render(request, 'dashboard/build_resume.html')
 
 
 #   ALL RESUMES
+@login_required(login_url='home')
 def all_resume(request):
-    return render(request, 'dashboard/all_resumes.html')
+    user = request.user
+
+    resumes = BuildResume.objects.order_by('-updated_date').filter(user_id=user.id)
+
+    if resumes:
+        return render(request, 'dashboard/all_resumes.html', {"resumes": resumes})
+    else:
+        return render(request, 'dashboard/all_resumes.html')
+
+
+#   READ RESUME
+@login_required(login_url='home')
+def read_resume(request, id):
+    return render(request, 'dashboard/read_resume.html')
+
+
+#   DELETE RESUME
+@login_required(login_url='home')
+def delete_resume(request, id):
+    
+    resume = BuildResume.objects.get(pk=id)
+    resume.delete()
+
+    return redirect('all_resume')
+
+
+#   UPDATE RESUME
+@login_required(login_url='home')
+def update_resume(request, id):
+    resume = BuildResume.objects.get(pk=id)
+
+    if request.method == "POST":
+        #   FETCH DATE
+        profile_img = request.FILES["profile_img"]
+        cover_img = request.FILES["cover_img"]
+
+        profession = request.POST["profession"]
+        country = request.POST["country"]
+        city = request.POST["city"]
+        phone = request.POST["phone"]
+
+        job_title = request.POST["job_title"]
+        employer = request.POST["employer"]
+        job_city = request.POST["job_city"]
+        job_country = request.POST["job_country"]
+        start_date_job = request.POST["start_date_job"]
+        end_date_job = request.POST["end_date_job"]
+        job_description = request.POST["job_description"]
+
+        school_name = request.POST["school_name"]
+        school_location = request.POST["school_location"]
+        degree = request.POST["degree"]
+        field_of_study = request.POST["field_of_study"]
+        start_date_study = request.POST["start_date_study"]
+        end_date_study = request.POST["end_date_study"]
+
+        skills = request.POST["skills"]
+
+        about_you = request.POST["about_you"]
+
+        project_title = request.POST["project_title"]
+        project_created_date = request.POST["project_created_date"]
+        about_project = request.POST["about_project"]
+
+        website = request.POST["website"]
+        twitter = request.POST["twitter"]
+        linkedin = request.POST["linkedin"]
+
+        #   UPDATE DATA
+        resume.profile_photo = profile_img
+        resume.cover_photo = cover_img
+
+        resume.profession = profession
+        resume.country = country
+        resume.city = city
+        resume.phone = phone
+
+        resume.job_title = job_title
+        resume.employer = employer
+        resume.job_city = job_city
+        resume.job_country = job_country
+        resume.job_start_date = start_date_job
+        resume.job_end_date = end_date_job
+        resume.job_description = job_description
+
+        resume.school_name = school_name
+        resume.school_location = school_location
+        resume.degree = degree
+        resume.field_of_study = field_of_study
+        resume.school_start_date = start_date_study
+        resume.school_end_date = end_date_study
+
+        resume.skills = skills
+        resume.about_you = about_you
+
+        resume.project_title = project_title
+        resume.project_date = project_created_date
+        resume.project_description = about_project
+
+        resume.website = website
+        resume.twitter = twitter
+        resume.linkedin = linkedin
+
+        resume.save()
+
+        return redirect('all_resume')
+
+
+    else:
+        return render(request, 'dashboard/update_resume.html', {"resume": resume})
 
 
 # NEED HELP
