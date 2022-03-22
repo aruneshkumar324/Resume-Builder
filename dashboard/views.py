@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from .models import BuildResume
+from django.core.paginator import Paginator
 
 
 # DASHBOARD
@@ -85,6 +86,7 @@ def new_password(request):
 
 
 #   DELETE ACCOUNT
+@login_required(login_url='home')
 def delete_account(request, id):
     if request.method == "POST":
 
@@ -182,12 +184,17 @@ def build_resume(request):
 #   ALL RESUMES
 @login_required(login_url='home')
 def all_resume(request):
+    #   GET USER RESUME DATA
     user = request.user
-
     resumes = BuildResume.objects.order_by('-updated_date').filter(user_id=user.id)
 
+    #   PAGINATOR
+    paginator = Paginator(resumes, 5)
+    page_number = request.GET.get('page')
+    page_object = paginator.get_page(page_number)
+
     if resumes:
-        return render(request, 'dashboard/all_resumes.html', {"resumes": resumes})
+        return render(request, 'dashboard/all_resumes.html', {"resumes": page_object})
     else:
         return render(request, 'dashboard/all_resumes.html')
 
