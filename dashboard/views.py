@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
@@ -82,6 +82,25 @@ def new_password(request):
             return render(request, 'dashboard/account_settings.html', {"message": "Password not match with confirm password"})
     else:
         return render(request, 'dashboard/account_settings.html')
+
+
+#   DELETE ACCOUNT
+def delete_account(request, id):
+    if request.method == "POST":
+
+        sure = request.POST.get("sure", False)
+
+        if sure == "on":
+            user_id = request.user.id
+            user = User.objects.get(pk=user_id)
+            user.delete()
+
+            return redirect('home')
+
+        else:
+            return render(request, 'dashboard/account_settings.html', {"delete_message": "Please select checkbox before delete your account."})
+
+
     
 
 # BUILD RESUME
