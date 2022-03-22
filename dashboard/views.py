@@ -91,9 +91,15 @@ def delete_account(request, id):
         sure = request.POST.get("sure", False)
 
         if sure == "on":
+            # user account delete
             user_id = request.user.id
             user = User.objects.get(pk=user_id)
             user.delete()
+
+            # delete user all resumes
+            resumes = BuildResume.objects.all().filter(user_id=user_id)
+
+            resumes.delete()
 
             return redirect('home')
 
