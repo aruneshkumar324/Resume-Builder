@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% load static %}
+
+{% include 'includes/header.html' %}
+{% include 'includes/sidebar.html' %}
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Blank Page</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Pages</li>
+          <li class="breadcrumb-item active">Blank</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+
+        <div class="col-lg-6">
+            <div class="card pt-3">
+                <div class="card-body">
+                    <img src="{% static 'assets/resume/devresume.png' %}" style="width:100%;" />
+                    <hr>
+                    <div class="pt-2">
+                        <a href="" class="btn btn-primary" style="margin-right:20px;">Set Defualt Resume Template</a>
+                        <a href="{% url 'preview' 1 %}" target="_blank" class="btn btn-primary">Preview</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card pt-3">
+                <div class="card-body">
+                    <img src="{% static 'assets/resume/orbit-template.png' %}" style="width:100%;height:750px;" />
+                    <hr>
+                    <div class="pt-2">
+                        <a href="" class="btn btn-primary" style="margin-right:20px;">Set Defualt Resume Template</a>
+                        <a href="{% url 'preview' 2 %}" target="_blank" class="btn btn-primary">Preview</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card pt-3">
+                <div class="card-body">
+                    <img src="{% static 'assets/resume/pillar-template.png' %}" style="width:100%;height:750px;" />
+                    <hr>
+                    <div class="pt-2">
+                        <a href="" class="btn btn-primary" style="margin-right:20px;">Set Defualt Resume Template</a>
+                        <a href="{% url 'preview' 3 %}" target="_blank" class="btn btn-primary">Preview</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+      </div>
+    </section>
+
+  </main>
+
+
+{% endblock %}

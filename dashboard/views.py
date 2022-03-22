@@ -301,6 +301,25 @@ def update_resume(request, id):
         return render(request, 'dashboard/update_resume.html', {"resume": resume})
 
 
+
+#   RESUME TEMPLATES
+@login_required(login_url='home')
+def resume_template(request):
+    return render(request, 'dashboard/resume_template.html')
+
+
+#   PREVIEW
+@login_required(login_url='home')
+def preview(request, id):
+    if id == 1:
+        return render(request, 'resume_templates/preview-1.html')
+    elif id == 2:
+        return render(request, 'resume_templates/preview-2.html')
+    elif id == 3:
+        return render(request, 'resume_templates/preview-3.html')
+
+
+
 # NEED HELP
 @login_required(login_url='home')
 def need_help(request):
