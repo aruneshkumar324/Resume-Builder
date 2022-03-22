@@ -42,6 +42,7 @@
                         <th scope="col">Resume Title</th>
                         <th scope="col">Created Date</th>
                         <th scope="col">Last Update Date</th>
+                        <th scope="col">Share</th>
                         <th scope="col">Update</th>
                         <th scope="col">Delete</th>
                     </tr>
@@ -53,6 +54,7 @@
                             <td><a href="{% url 'read_resume' resume.id %}">{{ resume.resume_title }}</a></td>
                             <td>{{ resume.created_date }}</td>
                             <td>{{ resume.updated_date }}</td>
+                            <td><a href="#"><i class="ri-share-forward-fill" style="font-size:1.3rem;"></i></a></td>
                             <td><a href="{% url 'update_resume' resume.id %}"><i class="ri-edit-2-fill" style="font-size:1.3rem;"></i></a></td>
                             <td><a href="{% url 'delete_resume' resume.id %}"><i class="ri-delete-bin-2-line" style="font-size:1.3rem;color:red;"></i></a></td>
                         </tr>

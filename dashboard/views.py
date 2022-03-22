@@ -14,7 +14,23 @@ def dashboard(request):
 # PROFILE
 @login_required(login_url='home')
 def profile(request):
-    return render(request, 'dashboard/profile.html')
+    user = request.user
+
+    user_data = User.objects.get(pk=user.id)
+    last_login = user_data.last_login
+    date_joined = user_data.date_joined
+
+    user_data = BuildResume.objects.all().filter(user_id=user.id)
+    last_user_data = user_data[len(user_data) - 1]
+
+    data ={
+        "data": last_user_data,
+        # "last_login": last_login.strftime("%d %B %Y"),
+        "last_login": last_login.strftime("%I:%M %p, %d-%B-%Y"),
+        "date_joined": date_joined.strftime("%I:%M %p, %d-%B-%Y"),
+    }
+
+    return render(request, 'dashboard/profile.html', data)
 
 
 # ACCOUNT SETTINGS
