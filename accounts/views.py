@@ -41,10 +41,12 @@ def register(request):
 
                     # CREATE USER
                     user = User.objects.create_user(first_name=first_name, last_name=last_name, username=username, email=email, password=password)
-
                     login(request, user)
-
                     user.save()
+
+                    # CREATE DEFUALT TEMPLATE
+                    user_template = TemplateName(user_id=user.id, email=user.email, defualt_template_name="devresume")
+                    user_template.save()
 
                     return redirect('dashboard')
 
