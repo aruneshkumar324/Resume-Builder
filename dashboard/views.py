@@ -116,8 +116,7 @@ def delete_account(request, id):
 def build_resume(request):
     if request.method == "POST":
         #   PHOTO
-        profile_img = request.FILES["profile_img"]
-        cover_img = request.FILES["cover_img"]
+        profile_photo = request.FILES["profile_photo"]
 
         resume_title = request.POST['resume_title']
 
@@ -131,47 +130,68 @@ def build_resume(request):
         city = request.POST['city']
         phone = request.POST['phone']
 
-        #   WORK HISTORY
-        job_title = request.POST['job_title']
-        employer = request.POST['employer']
-        job_city = request.POST['job_city']
-        job_country = request.POST['job_country']
-        start_date_job = request.POST['start_date_job']
-        end_date_job = request.POST['end_date_job']
-        job_description = request.POST['job_description']
-
-        #   SCHOOL INFO
-        school_name = request.POST['school_name']
-        school_location = request.POST['school_location']
-        degree = request.POST['degree']
-        field_of_study = request.POST['field_of_study']
-        start_date_study = request.POST['start_date_study']
-        end_date_study = request.POST['end_date_study']
-
-        #   SKILLS
         skills = request.POST['skills']
-
-        #   BERIEFLY INTRO
         about_you = request.POST['about_you']
+        interests = request.POST['interests']
+        speaking_languages = request.POST['speaking_languages']
+
+        #   AWARDS
+        award_title_1 = request.POST['award_title_1']
+        award_date_1 = request.POST['award_date_1']
+        award_description_1 = request.POST['award_description_1']
+
+        award_title_2 = request.POST['award_title_2']
+        award_date_2 = request.POST['award_date_2']
+        award_description_2 = request.POST['award_description_2']
+
+        #   WORK HISTORY
+        company_1 = request.POST['company_1']
+        role_1 = request.POST['role_1']
+        job_city_1 = request.POST['job_city_1']
+        job_country_1 = request.POST['job_country_1']
+        job_start_date_1 = request.POST['job_start_date_1']
+        job_end_date_1 = request.POST['job_end_date_1']
+        job_description_1 = request.POST['job_description_1']
+        
+        company_2 = request.POST['company_2']
+        role_2 = request.POST['role_2']
+        job_city_2 = request.POST['job_city_2']
+        job_country_2 = request.POST['job_country_2']
+        job_start_date_2 = request.POST['job_start_date_2']
+        job_end_date_2 = request.POST['job_end_date_2']
+        job_description_2 = request.POST['job_description_2']
+
+        #   EDUCATION
+        school_name_1 = request.POST['school_name_1']
+        field_of_study_1 = request.POST['field_of_study_1']
+        school_start_date_1 = request.POST['school_start_date_1']
+        school_end_date_1 = request.POST['school_end_date_1']
+
+        school_name_2 = request.POST['school_name_2']
+        field_of_study_2 = request.POST['field_of_study_2']
+        school_start_date_2 = request.POST['school_start_date_2']
+        school_end_date_2 = request.POST['school_end_date_2']
 
         #   PROJECT
-        project_title = request.POST['project_title']
-        project_created_date = request.POST['project_created_date']
-        about_project = request.POST['about_project']
+        project_title_1 = request.POST['project_title_1']
+        project_date_1 = request.POST['project_date_1']
+        project_description_1 = request.POST['project_description_1']
+
+        project_title_2 = request.POST['project_title_2']
+        project_date_2 = request.POST['project_date_2']
+        project_description_2 = request.POST['project_description_2']
 
         #   SOCIAL ACCOUNT
         website = request.POST['website']
         twitter = request.POST['twitter']
         linkedin = request.POST['linkedin']
         
-        user = User.objects.get(pk=user_id)
+        user = request.user
 
         if BuildResume.objects.filter(resume_title=resume_title, user_id=user.id).exists():
             return render(request, 'dashboard/build_resume.html', {"message": "Resume Title Not Available."})
         else:
-            resume = BuildResume(user_id=user_id, email=email, resume_title=resume_title, profile_photo=profile_img, cover_photo=cover_img, profession=profession, country=country, city=city,phone=phone, job_title=job_title, employer=employer, job_city=job_city, job_country=job_country, job_start_date=start_date_job,job_end_date=end_date_job, job_description=job_description, school_name=school_name, school_location=school_location,
-            degree=degree, field_of_study=field_of_study, school_start_date=start_date_study, school_end_date=end_date_study,skills=skills, about_you=about_you, project_title=project_title, project_date=project_created_date, project_description=about_project,
-            website=website, twitter=twitter, linkedin=linkedin)
+            resume = BuildResume(user_id=user_id, email=email, resume_title=resume_title, profile_photo=profile_photo, profession=profession, country=country, city=city, phone=phone, skills=skills, interests=interests, about_you=about_you, speaking_languages=speaking_languages, award_title_1=award_title_1, award_date_1=award_date_1,award_description_1=award_description_1, award_title_2=award_title_2, award_date_2=award_date_2, award_description_2=award_description_2, company_1=company_1, role_1=role_1, job_city_1=job_city_1, job_country_1=job_country_1, job_start_date_1=job_start_date_1, job_end_date_1=job_end_date_1, job_description_1=job_description_1, company_2=company_2, role_2=role_2, job_city_2=job_city_2, job_country_2=job_country_2, job_start_date_2=job_start_date_2, job_end_date_2=job_end_date_2, job_description_2=job_description_2, school_name_1=school_name_1, field_of_study_1=field_of_study_1, school_start_date_1=school_start_date_1, school_end_date_1=school_end_date_1, school_name_2=school_name_2, field_of_study_2=field_of_study_2, school_start_date_2=school_start_date_2, school_end_date_2=school_end_date_2, project_title_1=project_title_1, project_date_1=project_date_1, project_description_1=project_description_1, project_title_2=project_title_2, project_date_2=project_date_2, project_description_2=project_description_2, website=website, twitter=twitter, linkedin=linkedin)
 
             resume.save()
 

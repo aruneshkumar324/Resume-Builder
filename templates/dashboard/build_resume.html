@@ -33,11 +33,8 @@
             </div>
 
 
-            <div class="card">
-                <div class="card-body">
-                    
                     <!-- Floating Labels Form -->
-                    <form action="{% url 'build_resume' %}" method="POST" class="row g-3" enctype='multipart/form-data'>
+                    <form action="{% url 'build_resume' %}" method="POST" class="row g-3" enctype="multipart/form-data">
 
                         {% csrf_token %}
 
@@ -46,241 +43,452 @@
                         <!-- EMAIL -->
                         <input type="hidden" class="form-control" name="email" value="{{ user.email }}">
 
-                        <!-- RESUME TITLE -->
-                        {% if message %}
-                            <div class="alert alert-danger alert-dismissible fade show mt-4" role="alert">
-                                <i class="bi bi-exclamation-octagon me-1"></i>
-                                {{ message }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        {% endif %}
-                        <h5 class="card-title pt-5" style="text-decoration:underline;margin:0;padding:0">Give Your Resume Name.</h5>
-                        
-                        <div class="col-md-12">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingName" name="resume_title" placeholder="Resume Title" >
-                                <label for="floatingName">Resume Title</label>
-                            </div>
-                        </div>
+                        <div class="card">
+                            <div class="card-body">
 
-                        <hr style="height:4px;border-width:0;color:gray;background-color:#545454;border-radius:5px;padding:0; margin-top:50px;">
-                        <h5 class="card-title" style="text-decoration:underline; margin:0;padding:0;">YOUR BASIC DETAILS</h5>
-
-                        <!-- PHOTO UPLOAD -->
-                        <div class="col-md-6">
-                            <label for="formFile">Profile Photo</label>
-                            <input class="form-control" type="file" id="formFile" name="profile_img">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="formFile">Cover Photo</label>
-                            <input class="form-control" type="file" id="formFile" name="cover_img">
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingName" name="profession" placeholder="Profession" >
-                                <label for="floatingName">Profession</label>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" name="country" id="floatingName" placeholder="Country" >
-                                <label for="floatingName">Country</label>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingName" name="city" placeholder="City" >
-                                <label for="floatingName">City</label>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="number" class="form-control" id="floatingName" name="phone" placeholder="Phone" >
-                                <label for="floatingName">Phone</label>
-                            </div>
-                        </div>
-
-
-                        <!-- JOB -->
-                        <hr style="height:4px;border-width:0;color:gray;background-color:#545454;border-radius:5px;padding:0; margin-top:50px;">
-                        <h5 class="card-title" style="text-decoration:underline;margin:0;padding:0">WORK HISTORY</h5>
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingName" name="job_title" placeholder="Job Title">
-                                <label for="floatingName">Job Title</label>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingName" name="employer" placeholder="Employer">
-                                <label for="floatingName">Employer</label>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingName" name="job_city" placeholder="Job City">
-                                <label for="floatingName">Job City</label>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingName" name="job_country" placeholder="Job Country">
-                                <label for="floatingName">Job Country</label>
-                            </div>
-                        </div>
-
-                        <div class="col mb-6">
-                            <label for="inputDate" class="col-sm-5 col-form-label">Start Date</label>
-                            <div class="col-sm-10">
-                                <input type="date" class="form-control" name="start_date_job" min="1980-01-01" max="2022-12-31">
-                            </div>
-                        </div>
-
-                        <div class="col mb-6">
-                            <label for="inputDate" class="col-sm-5 col-form-label">End Date</label>
-                            <div class="col-sm-10">
-                                <input type="date" class="form-control" name="end_date_job" min="1980-01-01" max="2022-12-31">
-                            </div>
-                        </div>
-
-                        <div class="row mt-3">
-                            <div class="col-sm-12">
-                                <textarea class="form-control" style="height: 100px; width:100%;" placeholder="Add The Job Description" name="job_description"></textarea>
-                            </div>
-                        </div>
-
-
-                        <!-- EDUCATION -->
-                        <hr style="height:4px;border-width:0;color:gray;background-color:#545454;border-radius:5px;padding:0;margin-top:50px;">
-                        <h5 class="card-title" style="text-decoration:underline;margin:0;padding:0">EDUCATION</h5>
-
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingName" name="school_name" placeholder="School Name">
-                                <label for="floatingName">School Name</label>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingName" name="school_location" placeholder="School Location">
-                                <label for="floatingName">School Location</label>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <div class="col-sm-12">
-                                    <select class="form-select" id="floatingName" name="degree" aria-label="Default select example">
-                                        <option selected>Select Degree</option>
-                                        <option value="Hight School Diploma">Hight School Diploma</option>
-                                        <option value="Bachelor Arts">Bachelor Arts</option>
-                                        <option value="Master Science">Master Science</option>
-                                        <option value="Bachelor Science">Bachelor Science</option>
-                                    </select>
+                                <!-- RESUME TITLE -->
+                                {% if message %}
+                                    <div class="alert alert-danger alert-dismissible fade show mt-4" role="alert">
+                                        <i class="bi bi-exclamation-octagon me-1"></i>
+                                        {{ message }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                {% endif %}
+                                <h5 class="card-title pt-3 pb-3" style="margin:0;padding:0">Give Your Resume Name.</h5>
+                                
+                                <div class="col-md-12">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="floatingName" name="resume_title" placeholder="Resume Title" >
+                                        <label for="floatingName">Resume Title</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingName" name="field_of_study" placeholder="Field of Study">
-                                <label for="floatingName">Field of Study</label>
+
+                        {% comment %} BASIC INFORMATION {% endcomment %}
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <h5 class="card-title pt-3 pb-3" style="margin:0;padding:0">YOUR BASIC DETAILS</h5>
+
+                                    <div class="col-md-12 p-2">
+                                        <label for="formFile">Profile Photo</label>
+                                        <input class="form-control" type="file" id="formFile" name="profile_photo">
+                                    </div>
+
+                                    <div class="col-md-6 p-2">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingName" name="profession" placeholder="Profession" >
+                                            <label for="floatingName">Profession</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 p-2">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="country" id="floatingName" placeholder="Country" >
+                                            <label for="floatingName">Country</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 p-2">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingName" name="city" placeholder="City" >
+                                            <label for="floatingName">City</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 p-2">
+                                        <div class="form-floating">
+                                            <input type="number" class="form-control" id="floatingName" name="phone" placeholder="Phone" >
+                                            <label for="floatingName">Phone</label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="col mb-6">
-                            <label for="inputDate" class="col-sm-5 col-form-label">Start Date Stduy</label>
-                            <div class="col-sm-10">
-                                <input type="date" class="form-control" name="start_date_study" min="1980-01-01" max="2022-12-31">
-                            </div>
-                        </div>
 
-                        <div class="col mb-6">
-                            <label for="inputDate" class="col-sm-5 col-form-label">End Date Study</label>
-                            <div class="col-sm-10">
-                                <input type="date" class="form-control" name="end_date_study" min="1980-01-01" max="2022-12-31">
-                            </div>
-                        </div>
-
-
-                        <!-- SKILLS -->
-                        <hr style="height:4px;border-width:0;color:gray;background-color:#545454;border-radius:5px;padding:0;margin-top:50px;">
-                        <h5 class="card-title" style="text-decoration:underline;margin:0;padding:0">SKILLS</h5>
-
-                        <div class="row mt-3">
-                            <div class="col-sm-12">
-                                <textarea class="form-control" style="height: 100px; width:100%;" placeholder="HTML, CSS, JavaScript, Node.js, React.js and more" name="skills"></textarea>
+                        {% comment %} Briefly Tell Us About Your Background {% endcomment %}
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <h5 class="card-title pt-3 pb-3" style="margin:0;padding:0">Briefly Tell Us About Your Background</h5>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <textarea class="form-control" style="height: 120px; width:100%;" placeholder="Briefly Tell Us About Your Background" name="about_you"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
 
-                        <!-- Briefly Tell Us About Your Background -->
-                        <hr style="height:4px;border-width:0;color:gray;background-color:#545454;border-radius:5px;padding:0;margin-top:50px;">
-                        <h5 class="card-title" style="text-decoration:underline;margin:0;padding:0">Briefly Tell Us About Your Background</h5>
+                        {% comment %} SKILLS {% endcomment %}
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <h5 class="card-title pt-3 pb-3" style="margin:0;padding:0">SKILLS</h5>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <textarea class="form-control" style="height: 110px; width:100%;" placeholder="HTML, CSS, JavaScript, Node.js, React.js and more" name="skills"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                        <div class="row mt-3">
-                            <div class="col-sm-12">
-                                <textarea class="form-control" style="height: 120px; width:100%;" placeholder="Briefly Tell Us About Your Background" name="about_you"></textarea>
+
+                        {% comment %} INTERESTS {% endcomment %}
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <h5 class="card-title pt-3 pb-3" style="margin:0;padding:0">INTERESTS</h5>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <textarea class="form-control" style="height: 110px; width:100%;" placeholder="Music, Football, Cricket, Reading and more." name="interests"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        {% comment %} SPEAKING LANGUAGES {% endcomment %}
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <h5 class="card-title pt-3 pb-3" style="margin:0;padding:0">SPEAKING LANGUAGES</h5>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <textarea class="form-control" style="height: 110px; width:100%;" placeholder="English, Hindi, Punjabi, Bhojpuri and more." name="speaking_languages"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
 
 
-                        <!-- PROJECT -->
-                        <hr style="height:4px;border-width:0;color:gray;background-color:#545454;border-radius:5px;padding:0;margin-top:50px;">
-                        <h5 class="card-title" style="text-decoration:underline;margin:0;padding:0">PROJECT</h5>
-                        
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingName" name="project_title" placeholder="Project Title">
-                                <label for="floatingName">Project Title</label>
+                        {% comment %} AWARDS OR CERTIFICATES 1 {% endcomment %}
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <h5 class="card-title pt-3 pb-3" style="margin:0;padding:0">AWARDS OR CERTIFICATES - 1</h5>
+                                    <div class="col-md-6 p-2">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingName" name="award_title_1" placeholder="Award Title">
+                                            <label for="floatingName">Award Title</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col mb-6 p-2">
+                                        <label for="inputDate" class="col-sm-5 col-form-label">Award Date</label>
+                                        <div class="col-sm-10">
+                                            <input type="date" class="form-control" name="award_date_1" min="1980-01-01" max="2022-12-31">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3 p-2">
+                                        <div class="col-sm-12">
+                                            <textarea class="form-control" style="height: 100px; width:100%;" placeholder="About Award" name="award_description_1"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr style="height:5px;border-radius:50px;">
+
+                                <div class="row">
+                                    <h5 class="card-title pt-3 pb-3" style="margin:0;padding:0">AWARDS OR CERTIFICATES - 2</h5>
+                                    <div class="col-md-6 p-2">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingName" name="award_title_2" placeholder="Award Title">
+                                            <label for="floatingName">Award Title</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col mb-6 p-2">
+                                        <label for="inputDate" class="col-sm-5 col-form-label">Award Date</label>
+                                        <div class="col-sm-10">
+                                            <input type="date" class="form-control" name="award_date_2" min="1980-01-01" max="2022-12-31">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3 p-2">
+                                        <div class="col-sm-12">
+                                            <textarea class="form-control" style="height: 100px; width:100%;" placeholder="About Award" name="award_description_2"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="col mb-6">
-                            <label for="inputDate" class="col-sm-10 col-form-label">Project Created Date</label>
-                            <div class="col-sm-10">
-                                <input type="date" class="form-control" name="project_created_date" min="1980-01-01" max="2022-12-31">
+
+                        {% comment %} WORK HISTORY or INTERNSHIP {% endcomment %}
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <h5 class="card-title pt-3 pb-3" style="margin:0;padding:0">WORK HISTORY or INTERNSHIP - 1</h5>
+
+                                    <div class="col-md-6 p-2">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingName" name="company_1" placeholder="Company Name">
+                                            <label for="floatingName">Company Name</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 p-2">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingName" name="role_1" placeholder="Role">
+                                            <label for="floatingName">Role</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 p-2">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingName" name="job_city_1" placeholder="City">
+                                            <label for="floatingName">City</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 p-2">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingName" name="job_country_1" placeholder="Country">
+                                            <label for="floatingName">Country</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col mb-6 p-2">
+                                        <label for="inputDate" class="col-sm-5 col-form-label">Job Start Date</label>
+                                        <div class="col-sm-10">
+                                            <input type="date" class="form-control" name="job_start_date_1" min="1980-01-01" max="2022-12-31">
+                                        </div>
+                                    </div>
+
+                                    <div class="col mb-6 p-2">
+                                        <label for="inputDate" class="col-sm-5 col-form-label">Job End Date</label>
+                                        <div class="col-sm-10">
+                                            <input type="date" class="form-control" name="job_end_date_1" min="1980-01-01" max="2022-12-31">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3 p-2">
+                                        <div class="col-sm-12">
+                                            <textarea class="form-control" style="height: 100px; width:100%;" placeholder="Tell me about job" name="job_description_1"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <hr style="height:5px;border-radius:50px;">
+
+                                <div class="row">
+                                    <h5 class="card-title pt-3 pb-3" style="margin:0;padding:0">WORK HISTORY or INTERNSHIP - 2</h5>
+
+                                    <div class="col-md-6 p-2">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingName" name="company_2" placeholder="Company Name">
+                                            <label for="floatingName">Company Name</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 p-2">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingName" name="role_2" placeholder="Role">
+                                            <label for="floatingName">Role</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 p-2">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingName" name="job_city_2" placeholder="City">
+                                            <label for="floatingName">City</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 p-2">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingName" name="job_country_2" placeholder="Country">
+                                            <label for="floatingName">Country</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col mb-6 p-2">
+                                        <label for="inputDate" class="col-sm-5 col-form-label">Job Start Date</label>
+                                        <div class="col-sm-10">
+                                            <input type="date" class="form-control" name="job_start_date_2" min="1980-01-01" max="2022-12-31">
+                                        </div>
+                                    </div>
+
+                                    <div class="col mb-6 p-2">
+                                        <label for="inputDate" class="col-sm-5 col-form-label">Job End Date</label>
+                                        <div class="col-sm-10">
+                                            <input type="date" class="form-control" name="job_end_date_2" min="1980-01-01" max="2022-12-31">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3 p-2">
+                                        <div class="col-sm-12">
+                                            <textarea class="form-control" style="height: 100px; width:100%;" placeholder="Tell me about job" name="job_description_2"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="row mt-3">
-                            <div class="col-sm-12">
-                                <textarea class="form-control" style="height: 120px; width:100%;" placeholder="Briefly Explain About Your Project" name="about_project"></textarea>
+
+                        {% comment %} EDUCATION {% endcomment %}
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <h5 class="card-title pt-3 pb-3" style="margin:0;padding:0">EDUCATION - 1</h5>
+
+                                    <div class="col-md-6 p-2">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingName" name="school_name_1" placeholder="School Name">
+                                            <label for="floatingName">School Name</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6 p-2">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingName" name="field_of_study_1" placeholder="Field of Study">
+                                            <label for="floatingName">Field of Study</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col mb-6 p-2">
+                                        <label for="inputDate" class="col-sm-5 col-form-label">Start Date Stduy</label>
+                                        <div class="col-sm-10">
+                                            <input type="date" class="form-control" name="school_start_date_1" min="1980-01-01" max="2022-12-31">
+                                        </div>
+                                    </div>
+
+                                    <div class="col mb-6 p-2">
+                                        <label for="inputDate" class="col-sm-5 col-form-label">End Date Study</label>
+                                        <div class="col-sm-10">
+                                            <input type="date" class="form-control" name="school_end_date_1" min="1980-01-01" max="2022-12-31">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr style="height:5px;border-radius:50px;">
+
+                                <div class="row">
+                                    <h5 class="card-title pt-3 pb-3" style="margin:0;padding:0">EDUCATION - 2</h5>
+
+                                    <div class="col-md-6 p-2">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingName" name="school_name_2" placeholder="School Name">
+                                            <label for="floatingName">School Name</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6 p-2">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingName" name="field_of_study_2" placeholder="Field of Study">
+                                            <label for="floatingName">Field of Study</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col mb-6 p-2">
+                                        <label for="inputDate" class="col-sm-5 col-form-label">Start Date Stduy</label>
+                                        <div class="col-sm-10">
+                                            <input type="date" class="form-control" name="school_start_date_2" min="1980-01-01" max="2022-12-31">
+                                        </div>
+                                    </div>
+
+                                    <div class="col mb-6 p-2">
+                                        <label for="inputDate" class="col-sm-5 col-form-label">End Date Study</label>
+                                        <div class="col-sm-10">
+                                            <input type="date" class="form-control" name="school_end_date_2" min="1980-01-01" max="2022-12-31">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        {% comment %} PROJECT {% endcomment %}
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <h5 class="card-title pt-3 pb-3" style="margin:0;padding:0">PROJECT - 1</h5>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingName" name="project_title_1" placeholder="Project Title">
+                                            <label for="floatingName">Project Title</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col mb-6">
+                                        <label for="inputDate" class="col-sm-10 col-form-label">Project Created Date</label>
+                                        <div class="col-sm-10">
+                                            <input type="date" class="form-control" name="project_date_1" min="1980-01-01" max="2022-12-31">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3">
+                                        <div class="col-sm-12">
+                                            <textarea class="form-control" style="height: 120px; width:100%;" placeholder="Briefly Explain About Your Project" name="project_description_1"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr style="height:5px;border-radius:50px;">
+
+                                <div class="row">
+                                    <h5 class="card-title pt-3 pb-3" style="margin:0;padding:0">PROJECT - 2</h5>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingName" name="project_title_2" placeholder="Project Title">
+                                            <label for="floatingName">Project Title</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col mb-6">
+                                        <label for="inputDate" class="col-sm-10 col-form-label">Project Created Date</label>
+                                        <div class="col-sm-10">
+                                            <input type="date" class="form-control" name="project_date_2" min="1980-01-01" max="2022-12-31">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3">
+                                        <div class="col-sm-12">
+                                            <textarea class="form-control" style="height: 120px; width:100%;" placeholder="Briefly Explain About Your Project" name="project_description_2"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 
                         
                         <!-- Social Account -->
-                        <hr style="height:4px;border-width:0;color:gray;background-color:#545454;border-radius:5px;padding:0;margin-top:50px;">
-                        <h5 class="card-title" style="text-decoration:underline;margin:0;padding:0">Social Account</h5>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <h5 class="card-title pt-3 pb-3" style="margin:0;padding:0">Social Account</h5>
+                                    <div class="col-md-12 mb-3">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingName" placeholder="Website" name="website">
+                                            <label for="floatingName">Website</label>
+                                        </div>
+                                    </div>
 
-                        <div class="col-md-12">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingName" placeholder="Website" name="website">
-                                <label for="floatingName">Website ( Optional )</label>
-                            </div>
-                        </div>
+                                    <div class="col-md-12 mb-3">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingName" placeholder="Twitter Account Link" name="twitter">
+                                            <label for="floatingName">Twitter Account</label>
+                                        </div>
+                                    </div>
 
-                        <div class="col-md-12">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingName" placeholder="Twitter Account Link" name="twitter">
-                                <label for="floatingName">Twitter Account Link ( Optional )</label>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingName" placeholder="Linkedin Account Link" name="linkedin">
-                                <label for="floatingName">Linkedin Account Link ( Optional )</label>
+                                    <div class="col-md-12 mb-3">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingName" placeholder="Linkedin Account Link" name="linkedin">
+                                            <label for="floatingName">Linkedin Account</label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         
