@@ -264,73 +264,108 @@ def update_resume(request, id):
     resume = BuildResume.objects.get(pk=id)
 
     if request.method == "POST":
-        #   FETCH DATE
-        profile_img = request.FILES["profile_img"]
-        cover_img = request.FILES["cover_img"]
+        profile_photo = request.FILES["profile_photo"]
 
-        profession = request.POST["profession"]
-        country = request.POST["country"]
-        city = request.POST["city"]
-        phone = request.POST["phone"]
+        profession = request.POST['profession']
+        country = request.POST['country']
+        city = request.POST['city']
+        phone = request.POST['phone']
 
-        job_title = request.POST["job_title"]
-        employer = request.POST["employer"]
-        job_city = request.POST["job_city"]
-        job_country = request.POST["job_country"]
-        start_date_job = request.POST["start_date_job"]
-        end_date_job = request.POST["end_date_job"]
-        job_description = request.POST["job_description"]
+        skills = request.POST['skills']
+        about_you = request.POST['about_you']
+        interests = request.POST['interests']
+        speaking_languages = request.POST['speaking_languages']
 
-        school_name = request.POST["school_name"]
-        school_location = request.POST["school_location"]
-        degree = request.POST["degree"]
-        field_of_study = request.POST["field_of_study"]
-        start_date_study = request.POST["start_date_study"]
-        end_date_study = request.POST["end_date_study"]
+        award_title_1 = request.POST['award_title_1']
+        award_date_1 = request.POST['award_date_1']
+        award_description_1 = request.POST['award_description_1']
 
-        skills = request.POST["skills"]
+        award_title_2 = request.POST['award_title_2']
+        award_date_2 = request.POST['award_date_2']
+        award_description_2 = request.POST['award_description_2']
 
-        about_you = request.POST["about_you"]
+        company_1 = request.POST['company_1']
+        role_1 = request.POST['role_1']
+        job_city_1 = request.POST['job_city_1']
+        job_country_1 = request.POST['job_country_1']
+        job_start_date_1 = request.POST['job_start_date_1']
+        job_end_date_1 = request.POST['job_end_date_1']
+        job_description_1 = request.POST['job_description_1']
+        
+        company_2 = request.POST['company_2']
+        role_2 = request.POST['role_2']
+        job_city_2 = request.POST['job_city_2']
+        job_country_2 = request.POST['job_country_2']
+        job_start_date_2 = request.POST['job_start_date_2']
+        job_end_date_2 = request.POST['job_end_date_2']
+        job_description_2 = request.POST['job_description_2']
 
-        project_title = request.POST["project_title"]
-        project_created_date = request.POST["project_created_date"]
-        about_project = request.POST["about_project"]
+        school_name_1 = request.POST['school_name_1']
+        field_of_study_1 = request.POST['field_of_study_1']
+        school_start_date_1 = request.POST['school_start_date_1']
+        school_end_date_1 = request.POST['school_end_date_1']
 
-        website = request.POST["website"]
-        twitter = request.POST["twitter"]
-        linkedin = request.POST["linkedin"]
+        school_name_2 = request.POST['school_name_2']
+        field_of_study_2 = request.POST['field_of_study_2']
+        school_start_date_2 = request.POST['school_start_date_2']
+        school_end_date_2 = request.POST['school_end_date_2']
+
+        project_title_1 = request.POST['project_title_1']
+        project_date_1 = request.POST['project_date_1']
+        project_description_1 = request.POST['project_description_1']
+
+        project_title_2 = request.POST['project_title_2']
+        project_date_2 = request.POST['project_date_2']
+        project_description_2 = request.POST['project_description_2']
+
+        website = request.POST['website']
+        twitter = request.POST['twitter']
+        linkedin = request.POST['linkedin']
 
         #   UPDATE DATA
-        resume.profile_photo = profile_img
-        resume.cover_photo = cover_img
-
+        resume.profile_photo = profile_photo
         resume.profession = profession
         resume.country = country
         resume.city = city
         resume.phone = phone
-
-        resume.job_title = job_title
-        resume.employer = employer
-        resume.job_city = job_city
-        resume.job_country = job_country
-        resume.job_start_date = start_date_job
-        resume.job_end_date = end_date_job
-        resume.job_description = job_description
-
-        resume.school_name = school_name
-        resume.school_location = school_location
-        resume.degree = degree
-        resume.field_of_study = field_of_study
-        resume.school_start_date = start_date_study
-        resume.school_end_date = end_date_study
-
         resume.skills = skills
         resume.about_you = about_you
-
-        resume.project_title = project_title
-        resume.project_date = project_created_date
-        resume.project_description = about_project
-
+        resume.interests = interests
+        resume.speaking_languages = speaking_languages
+        resume.award_title_1 = award_title_1
+        resume.award_date_1 = award_date_1
+        resume.award_description_1 = award_description_1
+        resume.award_title_2 = award_title_2
+        resume.award_date_2 = award_date_2
+        resume.award_description_2 = award_description_2
+        resume.company_1 = company_1
+        resume.role_1 = role_1
+        resume.job_city_1 = job_city_1
+        resume.job_country_1 = job_country_1
+        resume.job_start_date_1 = job_start_date_1
+        resume.job_end_date_1 = job_end_date_1
+        resume.job_description_1 = job_description_1
+        resume.company_2 = company_2
+        resume.role_2 = role_2
+        resume.job_city_2 = job_city_2
+        resume.job_country_2 = job_country_2
+        resume.job_start_date_2 = job_start_date_2
+        resume.job_end_date_2 = job_end_date_2
+        resume.job_description_2 = job_description_2
+        resume.school_name_1 = school_name_1
+        resume.field_of_study_1 = field_of_study_1
+        resume.school_start_date_1 = school_start_date_1
+        resume.school_end_date_1 = school_end_date_1
+        resume.school_name_2 = school_name_2
+        resume.field_of_study_2 = field_of_study_2
+        resume.school_start_date_2 = school_start_date_2
+        resume.school_end_date_2 = school_end_date_2
+        resume.project_title_1 = project_title_1
+        resume.project_date_1 = project_date_1
+        resume.project_description_1 = project_description_1
+        resume.project_title_2 = project_title_2
+        resume.project_date_2 = project_date_2
+        resume.project_description_2 = project_description_2
         resume.website = website
         resume.twitter = twitter
         resume.linkedin = linkedin
@@ -338,7 +373,6 @@ def update_resume(request, id):
         resume.save()
 
         return redirect('all_resume')
-
 
     else:
         return render(request, 'dashboard/update_resume.html', {"resume": resume})
