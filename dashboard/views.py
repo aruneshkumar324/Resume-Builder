@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
-from .models import BuildResume
+from .models import BuildResume, TemplateName
 from django.core.paginator import Paginator
 
 
@@ -206,7 +206,17 @@ def read_resume(request, id):
     data = {
         "resume": resume,
     }
-    return render(request, 'resume_templates/preview-1.html', data)
+
+    template_name = TemplateName.objects.get(user_id=request.user.id)
+
+    name = template_name.defualt_template_name
+
+    if name == "devresume":
+        return render(request, 'resume_templates/preview-1.html', data)
+    elif name == "orbit":
+        return render(request, 'resume_templates/preview-2.html', data)
+    elif name == "pillar":
+        return render(request, 'resume_templates/preview-3.html', data)
 
 
 #   DELETE RESUME
@@ -314,13 +324,6 @@ def update_resume(request, id):
         return render(request, 'dashboard/update_resume.html', {"resume": resume})
 
 
-
-#   RESUME TEMPLATES
-@login_required(login_url='home')
-def resume_template(request):
-    return render(request, 'dashboard/resume_template.html')
-
-
 #   PREVIEW
 @login_required(login_url='home')
 def preview(request, id):
@@ -338,10 +341,56 @@ def preview(request, id):
         return render(request, 'resume_templates/preview-2.html', data)
     elif id == 3:
         return render(request, 'resume_templates/preview-3.html', data)
+    
+
+
+#   RESUME TEMPLATES
+@login_required(login_url='home')
+def resume_template(request):
+    
+    defualt_template = TemplateName.objects.get(user_id=request.user.id)
+    
+    data = {
+        "defualt_template": defualt_template.defualt_template_name,
+    }
+
+
+    return render(request, 'dashboard/resume_template.html', data)
+
+
+
+#   DEFUALT TEMPLATE NAME SETTINGS
+def template_name(request):
+    if request.method == "POST":
+        user_id = request.POST["user_id"]
+        email = request.POST["email"]
+        template_name = request.POST["defualt_template_name"]
+
+        # TemplateName
+        print(user_id, email, template_name)
+
+        if TemplateName.objects.filter(user_id=user_id):
+
+            template = TemplateName.objects.get(user_id=user_id)
+            template.defualt_template_name = template_name
+
+            template.save()
+            return redirect('resume_template')
+
+        else:
+            new_template = TemplateName(user_id=user_id, email=email, defualt_template_name=template_name)
+
+            new_template.save()
+
+            return redirect('resume_template')
+
+
+        
+
 
 
 
 # NEED HELP
 @login_required(login_url='home')
 def need_help(request):
-    return render(request, 'dashboard/need_help.html')
+    return render(request, 'dashboard/need_help.html') 

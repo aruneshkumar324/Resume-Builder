@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BuildResume
+from .models import BuildResume, TemplateName
 from django.utils.html import format_html
 
 
@@ -17,4 +17,11 @@ class BuildResumeAdmin(admin.ModelAdmin):
     list_display_links = ('id', 'thumbnail', 'resume_title', 'email')
 
 
+class TemplateNameAdmin(admin.ModelAdmin):
+    list_display = ('id', "user_id", "email", "defualt_template_name")
+    list_display_links = ('id', "user_id", "email", "defualt_template_name")
+
+
 admin.site.register(BuildResume, BuildResumeAdmin)
+admin.site.register(TemplateName, TemplateNameAdmin)
+ 

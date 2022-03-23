@@ -22,49 +22,98 @@
     </div><!-- End Page Title -->
 
     <section class="section">
-      <div class="row">
+      
 
-        <div class="col-lg-6">
-            <div class="card pt-3">
-                <div class="card-body">
-                    <img src="{% static 'assets/resume/devresume.png' %}" style="width:100%;" />
-                    <hr>
-                    <div class="pt-2">
-                        <a href="" class="btn btn-primary" style="margin-right:20px;">Set Defualt Resume Template</a>
-                        <a href="{% url 'preview' 1 %}" target="_blank" class="btn btn-primary">Preview</a>
+        <form action="{% url 'template_name' %}" method="POST">
+            {% csrf_token %}
+
+            <input type="hidden" name="user_id" value="{{ user.id }}"/>
+            <input type="hidden" name="email" value="{{ user.email }}"/>
+
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card pt-3">
+                        <div class="card-body">
+
+                            <img src="{% static 'assets/resume/devresume.png' %}" style="width:100%;" />
+
+                            <hr style="height:5px;border-width:0;color:gray;background-color:black;border-radius:5px;padding:0; margin-top:50px;">
+
+                                <div class="pt-2">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="defualt_template_name" id="gridRadios1" value="devresume" 
+                                            {% if defualt_template == "devresume" %}
+                                                checked
+                                            {% endif %}
+                                            >
+                                            <label class="form-check-label" for="gridRadios1">DevResume Template</label>
+                                        </div>
+                                        <br>
+                                        <button type="submit" class="btn btn-primary">Set Defualt Resume Template</button>
+                                        <hr>
+                                        <a href="{% url 'preview' 1 %}" target="_blank" class="btn btn-primary">Preview</a>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card pt-3">
+                        <div class="card-body">
+                            <img src="{% static 'assets/resume/orbit-template.png' %}" style="width:100%;height:750px;" />
+
+                            <hr style="height:5px;border-width:0;color:gray;background-color:black;border-radius:5px;padding:0; margin-top:50px;">
+
+                                <div class="pt-2">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="defualt_template_name" id="gridRadios2" value="orbit"
+                                            {% if defualt_template == "orbit" %}
+                                                checked
+                                            {% endif %}
+                                            >
+                                            <label class="form-check-label" for="gridRadios2">Orbit Template</label>
+                                        </div>
+                                        <br>
+                                        <button type="submit" class="btn btn-primary">Set Defualt Resume Template</button>
+                                        <hr>
+                                        <a href="{% url 'preview' 2 %}" target="_blank" class="btn btn-primary">Preview</a>
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card pt-3">
+                        <div class="card-body">
+                            <img src="{% static 'assets/resume/pillar-template.png' %}" style="width:100%;height:750px;" />
+
+                            <hr style="height:5px;border-width:0;color:gray;background-color:black;border-radius:5px;padding:0; margin-top:50px;">
+
+                                <div class="pt-2">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="defualt_template_name" id="gridRadios3" value="pillar"
+                                            {% if defualt_template == "pillar" %}
+                                                checked
+                                            {% endif %}
+                                            >
+                                            <label class="form-check-label" for="gridRadios3">Pillar Template</label>
+                                        </div>
+                                        <br>
+                                        <button type="submit" class="btn btn-primary">Set Defualt Resume Template</button>
+                                        <hr>
+                                        <a href="{% url 'preview' 3 %}" target="_blank" class="btn btn-primary">Preview</a>
+                                </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="col-lg-6">
-            <div class="card pt-3">
-                <div class="card-body">
-                    <img src="{% static 'assets/resume/orbit-template.png' %}" style="width:100%;height:750px;" />
-                    <hr>
-                    <div class="pt-2">
-                        <a href="" class="btn btn-primary" style="margin-right:20px;">Set Defualt Resume Template</a>
-                        <a href="{% url 'preview' 2 %}" target="_blank" class="btn btn-primary">Preview</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-6">
-            <div class="card pt-3">
-                <div class="card-body">
-                    <img src="{% static 'assets/resume/pillar-template.png' %}" style="width:100%;height:750px;" />
-                    <hr>
-                    <div class="pt-2">
-                        <a href="" class="btn btn-primary" style="margin-right:20px;">Set Defualt Resume Template</a>
-                        <a href="{% url 'preview' 3 %}" target="_blank" class="btn btn-primary">Preview</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </form>
 
         
-      </div>
+      
     </section>
 
   </main>

@@ -54,3 +54,11 @@ class BuildResume(models.Model):
     # created_date = models.DateTimeField(blank=True, default=datetime.now)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
+
+
+
+#   DEFUALT TEMPLATE MODEL
+class TemplateName(models.Model):
+    user_id = models.IntegerField()
+    email = models.CharField(max_length=300)
+    defualt_template_name = models.CharField(max_length=300)

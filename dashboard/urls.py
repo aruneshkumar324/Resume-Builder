@@ -16,5 +16,6 @@ urlpatterns = [
     path('update_resume/<int:id>/', views.update_resume, name="update_resume"),
     path('resume_template/', views.resume_template, name="resume_template"),
     path('preview/<int:id>/', views.preview, name="preview"),
+    path('template_name/', views.template_name, name="template_name"),
     # path('share_resume/<int:id>/', views.share_resume, name="share_resume")
 ]

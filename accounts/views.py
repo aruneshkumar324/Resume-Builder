@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
-from dashboard.models import BuildResume
+from dashboard.models import BuildResume, TemplateName
 
 
 
@@ -65,4 +65,14 @@ def share_resume(request, username, id):
     data = {
         "resume": resume,
     }
-    return render(request, 'resume_templates/preview-1.html', data)
+
+    template_name = TemplateName.objects.get(user_id=request.user.id)
+
+    name = template_name.defualt_template_name
+
+    if name == "devresume":
+        return render(request, 'resume_templates/preview-1.html', data)
+    elif name == "orbit":
+        return render(request, 'resume_templates/preview-2.html', data)
+    elif name == "pillar":
+        return render(request, 'resume_templates/preview-3.html', data)
