@@ -52,16 +52,24 @@
                         {% for resume in resumes %}
                         <tr>
                             <th scope="row">{{ forloop.counter }}</th>
-                            <td><a href="{% url 'read_resume' resume.id %}">{{ resume.resume_title }}</a></td>
+                            <td><a href="{% url 'read_resume' resume.id %}" target="_blank">{{ resume.resume_title }}</a></td>
                             <td>{{ resume.created_date }}</td>
                             <td>{{ resume.updated_date }}</td>
-                            <td><a href="#"><i class="ri-share-forward-fill" style="font-size:1.3rem;"></i></a></td>
+
+                            <td>
+                                <a href="{% url 'share_resume' user.username resume.id %}" target="_blank">
+                                    <i class="ri-share-forward-fill" style="font-size:1.3rem;"></i>
+                                </a>
+                            </td>
+
                             <td><a href="{% url 'update_resume' resume.id %}"><i class="ri-edit-2-fill" style="font-size:1.3rem;"></i></a></td>
                             <td><a href="{% url 'delete_resume' resume.id %}"><i class="ri-delete-bin-2-line" style="font-size:1.3rem;color:red;"></i></a></td>
                         </tr>
+
+
                         {% endfor %}
 
-                        
+                    
                     </tbody>
                 </table>
               
@@ -115,17 +123,8 @@
                     </ul>
                 </nav>
 
-
-
-
-
-
-
             </div>
           </div>
-
-
-
 
 
       </div>
@@ -136,6 +135,58 @@
 
 
 
+
+
+
+
+  
+
+
+                            {% comment %} <td>
+                                <a data-bs-toggle="modal" data-bs-target="#verticalycentered" href="{% url 'share_resume' user.username resume.id %}">
+                                    <i class="ri-share-forward-fill" style="font-size:1.3rem;"></i>
+                                    <span>{{ resume.id }}<span>
+                                </a>
+                            </td> {% endcomment %}
+
+{% comment %} SHARE LINK MODEL {% endcomment %}
+                                {% comment %} <div class="modal fade" id="verticalycentered" tabindex="-1">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title text-primary" style="font-weight:bold;">Copy Share Link</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="font-size:2.5rem;"></button>
+                                            </div>
+                                            <div class="modal-body"> {% endcomment %}
+                                                {% comment %} <input type="text" class="form-control" value="{% url 'share_resume' user.username resume.id %}" id="myInput"> {% endcomment %}
+                                                
+                                                {% comment %} <input type="text" class="form-control" value="http://127.0.0.1:8000{% url 'share_resume' user.username resume.id %}" id="myInput">
+                                                <p>{{ resume.id }}</p>
+                                                
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button onclick="Hello()" class="btn btn-primary">Copy Link</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> {% endcomment %}
+
+
+
+{% comment %} COPY SHARE LINK SCRIPT {% endcomment %}
+{% comment %} <script>
+  function Hello() {
+  var copyText = document.getElementById('myInput')
+  copyText.select();
+  document.execCommand('copy')
+  console.log('Copied Text')
+}
+</script> {% endcomment %}
+            
+
+
 {% endblock %}
+
 
 

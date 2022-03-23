@@ -202,7 +202,11 @@ def all_resume(request):
 #   READ RESUME
 @login_required(login_url='home')
 def read_resume(request, id):
-    return render(request, 'dashboard/read_resume.html')
+    resume = BuildResume.objects.get(pk=id)
+    data = {
+        "resume": resume,
+    }
+    return render(request, 'resume_templates/preview-1.html', data)
 
 
 #   DELETE RESUME
@@ -213,6 +217,15 @@ def delete_resume(request, id):
     resume.delete()
 
     return redirect('all_resume')
+
+
+#   SHARE RESUME LINK
+# def share_resume(request, id):
+#     resume = BuildResume.objects.get(pk=id)
+#     data = {
+#         "resume": resume,
+#     }
+#     return render(request, 'resume_templates/preview-1.html', data)
 
 
 #   UPDATE RESUME
@@ -311,12 +324,20 @@ def resume_template(request):
 #   PREVIEW
 @login_required(login_url='home')
 def preview(request, id):
+
+    user = request.user
+    resume = BuildResume.objects.order_by('-created_date').filter(user_id=user.id)[0]
+
+    data = {
+        "resume": resume,
+    } 
+
     if id == 1:
-        return render(request, 'resume_templates/preview-1.html')
+        return render(request, 'resume_templates/preview-1.html', data)
     elif id == 2:
-        return render(request, 'resume_templates/preview-2.html')
+        return render(request, 'resume_templates/preview-2.html', data)
     elif id == 3:
-        return render(request, 'resume_templates/preview-3.html')
+        return render(request, 'resume_templates/preview-3.html', data)
 
 
 

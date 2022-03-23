@@ -33,15 +33,15 @@
 				<div class="resume-header">
 					<div class="row align-items-center">
 						<div class="resume-title col-12 col-md-6 col-lg-8 col-xl-9">
-							<h2 class="resume-name mb-0 text-uppercase">Simon Doe</h2>
-							<div class="resume-tagline mb-3 mb-md-0">Senior Software Engineer</div>
+							<h2 class="resume-name mb-0 text-uppercase">{{ user.first_name }} {{ user.last_name }}</h2>
+							<div class="resume-tagline mb-3 mb-md-0">{{ resume.profession }}</div>
 						</div><!--//resume-title-->
 						<div class="resume-contact col-12 col-md-6 col-lg-4 col-xl-3">
 							<ul class="list-unstyled mb-0">
-								<li class="mb-2"><i class="fas fa-phone-square fa-fw fa-lg me-2 "></i><a class="resume-link" href="tel:#">0123 4567 890</a></li>
-								<li class="mb-2"><i class="fas fa-envelope-square fa-fw fa-lg me-2"></i><a class="resume-link" href="mailto:#">simon@yourwebsite.com</a></li>
-								<li class="mb-2"><i class="fas fa-globe fa-fw fa-lg me-2"></i><a class="resume-link" href="#">www.yourwebsite.com</a></li>
-								<li class="mb-0"><i class="fas fa-map-marker-alt fa-fw fa-lg me-2"></i>New York</li>
+								<li class="mb-2"><i class="fas fa-phone-square fa-fw fa-lg me-2 "></i><a class="resume-link" href="tel:#">{{ resume.phone }}</a></li>
+								<li class="mb-2"><i class="fas fa-envelope-square fa-fw fa-lg me-2"></i><a class="resume-link" href="mailto:#">{{ resume.email }}</a></li>
+								<li class="mb-2"><i class="fas fa-globe fa-fw fa-lg me-2"></i><a class="resume-link" href="#">{{ resume.website }}</a></li>
+								<li class="mb-0"><i class="fas fa-map-marker-alt fa-fw fa-lg me-2"></i>{{ resume.city }}, {{ resume.country }}</li>
 							</ul>
 						</div><!--//resume-contact-->
 					</div><!--//row-->
@@ -52,11 +52,11 @@
 					<div class="row align-items-center">
 						<div class="col-12 col-md-3 col-xl-2 text-center">
 						    <img class="resume-profile-image mb-3 mb-md-0 me-md-5  ms-md-0 rounded mx-auto"
-						        src="{% static 'devassets/assets/images/resume-profile.png' %}" alt="image">
+						        src="{{ resume.profile_photo.url }}" alt="image">
 						</div>
 						
 						<div class="col text-start">
-							<p class="mb-0">Summarise your career here. <a class="theme-link" href="https://themes.3rdwavemedia.com/resources/sketch-template/resume-sketch-sketch-resume-template-for-software-developers/" target="_blank">You can make a PDF version of your resume using our free Sketch template here</a>. Donec quam felis, ultricies nec, pellentesque eu. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.  Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. </p>
+							<p class="mb-0">{{ resume.about_you }}</p>
 						</div><!--//col-->
 					</div>
 				</div><!--//resume-intro-->
@@ -68,17 +68,12 @@
 								<h3 class="text-uppercase resume-section-heading mb-4">Work Experiences</h3>
 								<div class="item mb-3">
 									<div class="item-heading row align-items-center mb-2">
-										<h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Senior Software Engineer</h4>
-										<div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-start text-md-end">Google | 2019 - Present</div>
+										<h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">{{ resume.job_title }}</h4>
+										<div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-start text-md-end">{{ resume.job_start_date }} - {{ resume.job_end_date }}</div>
 										
 									</div>
 									<div class="item-content">
-										<p>Role description goes here ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Donec pede justo, fringilla vel. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis.</p>
-										<ul class="resume-list">
-											<li>Lorem ipsum dolor sit amet, consectetuer.</li>
-											<li>Aenean commodo ligula eget dolor.</li>
-											<li>Etiam ultricies nisi vel augue.</li>
-										</ul>
+										<p>{{ resume.job_description }}</p>
 									</div>
 								</div><!--//item-->
 								<div class="item mb-3">

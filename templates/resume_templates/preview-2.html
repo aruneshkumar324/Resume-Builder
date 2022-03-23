@@ -27,8 +27,8 @@
         <div class="sidebar-wrapper">
             <div class="profile-container">
                 <img class="profile" src="{% static 'orbitassets/assets/images/profile.png' %}" alt="" />
-                <h1 class="name">Alan Doe</h1>
-                <h3 class="tagline">Full Stack Developer</h3>
+                <h1 class="name">{{ user.first_name }} {{ user.last_name }}</h1>
+                <h3 class="tagline">{{ resume.profession }} </h3>
             </div><!--//profile-container-->
             
             <div class="contact-container container-block">

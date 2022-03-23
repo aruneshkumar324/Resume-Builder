@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
+from dashboard.models import BuildResume
+
 
 
 def user_login(request):
@@ -55,3 +57,12 @@ def register(request):
 def log_out(request):
     logout(request)
     return redirect('home')
+
+
+#   SHARE RESUME LINK
+def share_resume(request, username, id):
+    resume = BuildResume.objects.get(pk=id)
+    data = {
+        "resume": resume,
+    }
+    return render(request, 'resume_templates/preview-1.html', data)
