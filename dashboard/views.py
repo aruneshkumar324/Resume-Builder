@@ -4,12 +4,28 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from .models import BuildResume, TemplateName
 from django.core.paginator import Paginator
+from contacts.models import Feedback
 
 
 # DASHBOARD
 @login_required(login_url='home')
 def dashboard(request):
-    return render(request, 'dashboard/dashboard.html')
+    total_resumes = BuildResume.objects.all().count()
+    resumes = BuildResume.objects.order_by('-created_date')[:5]
+    template_name = TemplateName.objects.get(user_id=request.user.id)
+    feedback = Feedback.objects.all()
+    user = User.objects.get(pk=request.user.id)
+
+    data = {
+        "total_resumes": total_resumes,
+        "resumes": resumes,
+        "template_name": template_name.defualt_template_name,
+        "last_login": user.last_login,
+        "date_joined": user.date_joined,
+        "feedback": feedback,
+    }
+
+    return render(request, 'dashboard/dashboard.html', data)
 
 
 # PROFILE
