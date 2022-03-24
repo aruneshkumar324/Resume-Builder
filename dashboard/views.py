@@ -112,15 +112,19 @@ def delete_account(request, id):
             # user account delete
             user_id = request.user.id
             user = User.objects.get(pk=user_id)
-            user.delete()
+            # user.delete()
+
+            user.is_active = False
+
+            user.save()
 
             # delete user all resumes
-            resumes = BuildResume.objects.all().filter(user_id=user_id)
-            resumes.delete()
+            # resumes = BuildResume.objects.all().filter(user_id=user_id)
+            # resumes.delete()
 
-            # CREATE DEFUALT TEMPLATE
-            user_template = TemplateName.objects.get(email=request.user.email)
-            user_template.delete()
+            # DEFUALT TEMPLATE
+            # user_template = TemplateName.objects.get(email=request.user.email)
+            # user_template.delete()
 
             return redirect('home')
 
