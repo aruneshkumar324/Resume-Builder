@@ -33,7 +33,7 @@
             </div>
 
                     <!-- Floating Labels Form -->
-                    <form action="{% url 'update_resume' resume.id %}" method="POST" class="row g-3" enctype='multipart/form-data'>
+                    <form action="{% url 'update_resume' resume.id %}" method="POST" class="row g-3" enctype="multipart/form-data">
 
                         {% csrf_token %}
 
@@ -45,7 +45,7 @@
 
                                     <div class="col-md-12 p-2">
                                         <label for="formFile">Profile Photo</label>
-                                        <input class="form-control" type="file" id="formFile" name="profile_photo" required>
+                                        <input class="form-control" type="file" id="formFile" name="profile_photo" value="{{ resume.profile_photo }}">
                                     </div>
 
                                     <div class="col-md-6 p-2">
@@ -465,7 +465,7 @@
                         
                         
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary">Create Resume</button>
+                            <button type="submit" class="btn btn-primary">Update Resume</button>
                         </div>
 
                     </form>

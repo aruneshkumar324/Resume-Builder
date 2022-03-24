@@ -223,8 +223,25 @@ def all_resume(request):
 @login_required(login_url='home')
 def read_resume(request, id):
     resume = BuildResume.objects.get(pk=id)
+
+    skills = resume.skills.split(",")
+    speaking_languages = resume.speaking_languages.split(",")
+    interests = resume.interests.split(",")
+    twitter = resume.twitter.split(".com/")[1]
+    linkedin = resume.linkedin.split("in/")[1]
+    website = resume.website.split("/")[2]
+
+    
+
     data = {
         "resume": resume,
+        "title": request.user.first_name+" "+request.user.last_name,
+        "skills": skills,
+        "speaking_languages": speaking_languages,
+        "interests": interests,
+        "twitter": twitter,
+        "linkedin": linkedin,
+        "website": website,
     }
 
     template_name = TemplateName.objects.get(user_id=request.user.id)
@@ -440,8 +457,6 @@ def template_name(request):
 
 
         
-
-
 
 
 # NEED HELP
