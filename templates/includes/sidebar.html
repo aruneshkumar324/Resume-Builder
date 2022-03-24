@@ -99,9 +99,15 @@
       </li><!-- End F.A.Q Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-contact.html">
+        <a 
+        {% if 'feedback' in request.path %}
+            class="nav-link"
+        {% else %}
+            class="nav-link collapsed"
+        {% endif %}
+        href="{% url 'feedback' %}">
           <i class="bi bi-envelope"></i>
-          <span>Contact</span>
+          <span>Feedback</span>
         </a>
       </li><!-- End Contact Page Nav -->
 

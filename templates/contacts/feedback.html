@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% include 'includes/header.html' %}
+{% include 'includes/sidebar.html' %}
+
+
+ <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Feedback</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+          <li class="breadcrumb-item active">Feedback</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-8">
+
+                <form action="" method="POST">
+                    <div class="card">
+                        <div class="card-header">Give us feedback about a BuildREsume feature</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Let us know how we can improve your Resume Build experience.</h5>
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label" style="width:25%;">Product or feature</label>
+                                <div class="col-sm-8">
+                                    <select class="form-select" aria-label="Default select example" name="feature">
+                                    <option selected>Notes</option>
+                                    <option value="Home">Home</option>
+                                    <option value="Dashboard">Dashboard</option>
+                                    <option value="Login">Login</option>
+                                    <option value="Register">Register</option>
+                                    <option value="Account Settings">Account Settings</option>
+                                    <option value="Build Resume">Build Resume</option>
+                                    <option value="All Resume">All Resume</option>
+                                    <option value="Read Resume">Read Resume</option>
+                                    <option value="Update Resume">Update Resume</option>
+                                    <option value="Delete Resume">Delete Resume</option>
+                                    <option value="Preview Resume">Preview Resume</option>
+                                    <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="inputPassword" class="col-sm-2 col-form-label" style="width:25%;">Your Feedback</label>
+                                <div class="col-sm-8">
+                                    <textarea class="form-control" style="height: 120px" name="feedback" placeholder="Please include a detailed description of your idea or suggestion."></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                        <center>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Send</button>
+                            </div>
+                        </center>
+                      
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+</main>
+
+
+{% endblock %}
