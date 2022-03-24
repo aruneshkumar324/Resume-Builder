@@ -230,9 +230,6 @@ def read_resume(request, id):
     skills = resume.skills.split(",")
     speaking_languages = resume.speaking_languages.split(",")
     interests = resume.interests.split(",")
-    twitter = resume.twitter.split(".com/")[1]
-    linkedin = resume.linkedin.split("in/")[1]
-    website = resume.website.split("/")[2]
 
     
 
@@ -242,9 +239,6 @@ def read_resume(request, id):
         "skills": skills,
         "speaking_languages": speaking_languages,
         "interests": interests,
-        "twitter": twitter,
-        "linkedin": linkedin,
-        "website": website,
     }
 
     template_name = TemplateName.objects.get(user_id=request.user.id)
