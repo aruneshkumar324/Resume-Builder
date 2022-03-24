@@ -100,8 +100,11 @@ def delete_account(request, id):
 
             # delete user all resumes
             resumes = BuildResume.objects.all().filter(user_id=user_id)
-
             resumes.delete()
+
+            # CREATE DEFUALT TEMPLATE
+            user_template = TemplateName.objects.get(email=request.user.email)
+            user_template.delete()
 
             return redirect('home')
 
